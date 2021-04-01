@@ -9,7 +9,8 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    protected $primaryKey = 'id';
+    protected $table = 'user';
 
     /**
      * The attributes that are mass assignable.
@@ -17,9 +18,18 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
+        'lastName',
+        'firstName',
+        'companyName',
         'email',
         'password',
+        'phone',
+        'streetAndHouseNumber',
+        'zipCode',
+        'city',
+        'country',
+        'role',
+        'verified'
     ];
 
     /**
@@ -28,16 +38,29 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password',
-        'remember_token',
+        'password'
     ];
 
+    public function product() {
+        return $this->belongsTo('App\Models\Product', 'dealer');
+    }
+
+    // JWT-Handling below
+
     /**
-     * The attributes that should be cast to native types.
+     * Get the identifier that will be stored in the subject claim of the JWT.
      *
-     * @var array
+     * @return mixed
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function getJWTIdentifier() {
+        return $this->getKey();
+    }
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims() {
+        return [];
+    }
 }
