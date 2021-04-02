@@ -21,9 +21,10 @@ class CreateUserTable extends Migration
             $table->string('companyName', 150);
             $table->string('email')->unique();
             $table->string('password', 255);
-            $table->string('phone', 20);
+            $table->string('phone', 20)->nullable();
             $table->string('streetAndHouseNumber', 100);
             $table->string('zipCode', 10);
+            $table->string('city', 100);
             $table->string('country', 100);
             $table->enum('role', ['dealer', 'customer', 'admin']);
             $table->boolean('verified');

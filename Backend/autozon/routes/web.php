@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+$router->group(['prefix' => 'api'], function () use ($router) {
+    // Auth endpoint
+    $router->group(['prefix' => 'auth'], function () use ($router) {
+        $router->group(['prefix' => 'signup'], function () use ($router) {
+            $router->post('customer', [UserController::class, 'createCustomer']);
+            $router->post('dealer', [UserController::class, 'createDealer']);
+        });
+        $router->post('signin', [AuthController::class, 'login']);
+        $router->post('signout', [AuthController::class, 'logout']);
+        $router->post('refresh', [AuthController::class, 'refresh']);
+    });
 });
