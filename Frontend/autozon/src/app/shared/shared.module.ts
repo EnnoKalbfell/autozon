@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { CoreModule } from '../core/core.module';
 import { MaterialModule } from '../core/material/material.module';
 
@@ -7,7 +8,8 @@ import { MaterialModule } from '../core/material/material.module';
   declarations: [],
   exports: [
     MaterialModule, 
-    CoreModule
+    CoreModule,
+    FlexLayoutModule
   ]
 })
 export class SharedModule { }
