@@ -1,4 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/theming';
+
+@import './app/themes/light-theme.scss';
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@include mat-core();
+
+$autozon-light-primary: mat-palette($md-primary);
+$autozon-light-accent: mat-palette($md-accent);
+$autozon-light-warn: mat-palette($md-warn);
+
+$autozon-light-theme: mat-light-theme(
+    $autozon-light-primary,
+    $autozon-light-accent,
+    $autozon-light-warn
+);
+@include angular-material-theme($autozon-light-theme);
