@@ -23,7 +23,7 @@ class CreateProductTable extends Migration
             $table->boolean('streetLegality');
             $table->foreignId('carId')->constrained('car');
             $table->string('shortDescription', 200);
-            $table->bigInteger('category'); // TODO: Was ist das?
+            $table->string('category'); // TODO: Was ist das?
             $table->string('serialNumber', 100);
             $table->string('preview', 150);
             $table->string('preview2', 150);

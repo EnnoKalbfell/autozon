@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,5 +26,9 @@ $router->group(['prefix' => 'api'], function () use ($router) {
         $router->post('signin', [AuthController::class, 'login']);
         $router->post('signout', [AuthController::class, 'logout']);
         $router->post('refresh', [AuthController::class, 'refresh']);
+    });
+    $router->group(['prefix' => 'product'], function () use ($router) {
+        $router->get('', [ProductController::class, 'getAllProducts']);
+        
     });
 });
