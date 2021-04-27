@@ -27,8 +27,9 @@ $router->group(['prefix' => 'api'], function () use ($router) {
         $router->post('signout', [AuthController::class, 'logout']);
         $router->post('refresh', [AuthController::class, 'refresh']);
     });
+    // Product endpoint
     $router->group(['prefix' => 'product'], function () use ($router) {
         $router->get('', [ProductController::class, 'getAllProducts']);
-        
+        $router->get('{id}', [ProductController::class, 'productById']);
     });
 });
