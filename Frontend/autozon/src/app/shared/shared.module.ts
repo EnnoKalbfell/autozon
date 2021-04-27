@@ -8,8 +8,8 @@ import { MaterialModule } from '../core/material/material.module';
   declarations: [],
   exports: [
     MaterialModule, 
-    CoreModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    CoreModule
   ]
 })
 export class SharedModule { }
