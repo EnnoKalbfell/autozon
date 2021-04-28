@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Product;
+use App\Models\Car;
+use App\Models\CarModel;
 use Doctrine\Common\Annotations\Reader;
 use Exception;
 use Illuminate\Http\Request;
@@ -15,9 +18,7 @@ class UserController extends Controller
      * Create a new controller instance.
      * @return void
      */
-    public function __construct() {
-      //
-    }
+    public function __construct() {}
 
     /**
      * Create new customer
@@ -98,8 +99,7 @@ class UserController extends Controller
      * Get user by user's email
      * @return $user
      */
-    public static function userByEmail($email)
-    {
+    public static function userByEmail($email) {
       return User::where('email', $email)->first();
     }
 
@@ -107,8 +107,27 @@ class UserController extends Controller
      * Get user by user's id
      * @return $user
      */
-    public static function userById($id)
-    {
+    public static function userById($id) {
       return User::where('id', $id)->first();
+    }
+
+    /**
+     * Get products created by authenticated user
+     * @return Product[]
+     */
+    public function productsOfUser() {
+      // Get authenticated user
+      $authController = new AuthController;
+      $user = $authController->me();
+      // Search all products of authenticated user
+      $products = Product::where('dealer', $user->id)->get();
+      foreach ($products as $product) {
+        $car = Car::where('id', $product->carId)->first();
+        $carModel = CarModel::where('id', $car->carModelId)->first();
+  
+        $car->carModel = $carModel;
+        $product->car = $car;
+      }
+      return $products;
     }
 }
