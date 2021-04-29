@@ -18,3 +18,6 @@ In order to start the backend application, you need to follow these steps:
 
 # Some authentication methods are not working
 Try to create a new jwt secret (php artisan jwt:secret). This might help.
+
+# Testing
+Unit tests can be run with the following command: php artisan test
