@@ -35,6 +35,7 @@ $router->group([
     $router->group(['prefix' => 'product'], function () use ($router) {
         $router->post('create', [ProductController::class, 'createProduct']);
         $router->get('', [ProductController::class, 'getAllProducts']);
+        $router->delete('{id}/delete', [ProductController::class, 'deleteProduct']);
         $router->get('{id}', [ProductController::class, 'productById']);
     });
     // User endpoint

@@ -20,10 +20,9 @@ class ProductController extends Controller
 
   /**
    * Show all products
-   * @return Product[]
+   * @return Product[] $products
    */
-  public function getAllProducts()
-  {
+  public function getAllProducts() {
     $products = DB::table('product')->get();
     foreach ($products as $product) {
       $car = Car::where('id', $product->carId)->first();
@@ -37,10 +36,10 @@ class ProductController extends Controller
 
   /**
    * Get one product by id
-   * @return Product
+   * @param number $id
+   * @return Product $product
    */
-  public static function productById($id)
-  {
+  public static function productById($id) {
     $product = Product::where('id', $id)->first();
     $car = Car::where('id', $product->carId)->first();
     $carModel = CarModel::where('id', $car->carModelId)->first();
@@ -52,9 +51,17 @@ class ProductController extends Controller
 
   /**
    * Create a new product
+   * @return \Illuminate\Http\JsonResponse
    */
-  public function createProduct(Request $request)
-  {
+  public function createProduct(Request $request) {
+    // Get authenticated user
+    $authController = new AuthController;
+    $user = $authController->authenticatedUser();
+    // Return error if user is not authorized to create a product
+    if (!$user || $user->role !== 'dealer') {
+      return response()->json(['error' => 'Unauthorized'], 401);
+    }
+
     try {
       // Server-side input validation
       $this->validate($request, [
@@ -74,7 +81,7 @@ class ProductController extends Controller
 
       DB::table('product')->insert([
         'name' => $request->input('name'),
-        'dealer' => $request->input('dealer'),
+        'dealer' => $user->id,
         'manufacturer' => $request->input('manufacturer'),
         'price' => $request->input('price'),
         'streetLegality' => $request->input('streetLegality'),
@@ -86,8 +93,36 @@ class ProductController extends Controller
         'preview2' => $request->input('preview2'),
         'preview3' => $request->input('preview3'),
       ]);
+      return response()->json(['msg' => 'Created successfully'], 201);
     } catch (Exception $exception) {
-      return response()->json(['error' => 'Entry in database has failed!'], 400);
+      return response()->json(['error' => 'Entry in database has failed!'], 500);
+    }
+  }
+
+  /**
+   * Delete a product
+   * @param number $id
+   * @return \Illuminate\Http\JsonResponse
+   */
+  public function deleteProduct($id) {
+    $product = Product::where('id', $id)->first();
+    // Get authenticated user
+    $authController = new AuthController;
+    $user = $authController->authenticatedUser();
+    // Return error if no product with this id was found
+    if (!$product) {
+      return response()->json(['error' => 'Not Found'], 404);
+    }
+    // Return error if user is not authorized to delete this product
+    if (!$user || $user->role !== 'dealer' || $user->id !== $product->dealer) {
+      return response()->json(['error' => 'Unauthorized'], 401);
+    }
+    // Try to delete product
+    try {
+      Product::where('id', $id)->delete();
+      return response()->json(['msg' => 'Deleted successfully'], 201);
+    } catch (Exception $exception) {
+      return response()->json(['error' => 'Could not delete product'], 500);
     }
   }
 }
