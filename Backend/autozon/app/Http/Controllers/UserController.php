@@ -118,7 +118,7 @@ class UserController extends Controller
     public function productsOfUser() {
       // Get authenticated user
       $authController = new AuthController;
-      $user = $authController->me();
+      $user = $authController->authenticatedUser();
       // Search all products of authenticated user
       $products = Product::where('dealer', $user->id)->get();
       foreach ($products as $product) {

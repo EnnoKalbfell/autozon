@@ -29,7 +29,7 @@ $router->group([
         $router->post('signin', [AuthController::class, 'login']);
         $router->post('signout', [AuthController::class, 'logout']);
         $router->post('refresh', [AuthController::class, 'refresh']);
-        $router->post('me', [AuthController::class, 'me']);
+        $router->post('authenticatedUser', [AuthController::class, 'authenticatedUser']);
     });
     // Product endpoint
     $router->group(['prefix' => 'product'], function () use ($router) {
