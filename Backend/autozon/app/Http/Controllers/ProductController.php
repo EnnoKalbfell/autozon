@@ -3,36 +3,56 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Car;
+use App\Models\CarModel;
+use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-  /**
+    /**
    * Create a new controller instance.
    * @return void
    */
-  public function __construct()
-  {
-    //
-  }
+  public function __construct() {}
 
   /**
    * Show all products
-   *
-   * @return ['name','dealer','manufacturer','price','streetLegality','carId','shortDescription','category','serialNumber','preview','preview2','preview3']
+   * @return Product[]
    */
   public function getAllProducts()
   {
-    return DB::table('product')->get();
+    $products = DB::table('product')->get();
+    foreach ($products as $product) {
+      $car = Car::where('id', $product->carId)->first();
+      $carModel = CarModel::where('id', $car->carModelId)->first();
+
+      $car->carModel = $carModel;
+      $product->car = $car;
+    }
+    return $products;
   }
 
+  /**
+   * Get one product by id
+   * @return Product
+   */
   public static function productById($id)
   {
-    return Product::where('id', $id)->first();
+    $product = Product::where('id', $id)->first();
+    $car = Car::where('id', $product->carId)->first();
+    $carModel = CarModel::where('id', $car->carModelId)->first();
+
+    $car->carModel = $carModel;
+    $product->car = $car;
+    return $product;
   }
 
+  /**
+   * Create a new product
+   */
   public function createProduct(Request $request)
   {
     try {
