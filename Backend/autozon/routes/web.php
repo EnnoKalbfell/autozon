@@ -33,6 +33,7 @@ $router->group([
     });
     // Product endpoint
     $router->group(['prefix' => 'product'], function () use ($router) {
+        $router->post('create', [ProductController::class, 'createProduct']);
         $router->get('', [ProductController::class, 'getAllProducts']);
         $router->get('{id}', [ProductController::class, 'productById']);
     });
