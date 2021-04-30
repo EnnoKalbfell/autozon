@@ -321,6 +321,50 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "order",
+			"item": [
+				{
+					"name": "placeOrder",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGgvc2lnbmluIiwiaWF0IjoxNjE5ODA1MjQyLCJleHAiOjE2MTk4MDg4NDIsIm5iZiI6MTYxOTgwNTI0MiwianRpIjoiSk1BalBwb0RMRmZZalpxcSIsInN1YiI6NCwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImlkIjo0LCJyb2xlIjoiY3VzdG9tZXIiLCJlbWFpbCI6InVzZXJAdGVzdC5jaCIsImZpcnN0TmFtZSI6IlRlc3QiLCJsYXN0TmFtZSI6IlVzZXIifQ.I-cnLvrf_Ufx5XLYX50MHsZKlOMRgH9rm01VRCi3nWk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productIds\": [1, 2]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{base}}:{{port}}/api/order",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{base}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"order"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
