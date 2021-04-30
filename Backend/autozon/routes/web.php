@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,5 +42,9 @@ $router->group([
     // User endpoint
     $router->group(['prefix' => 'user'], function () use ($router) {
         $router->get('products', [UserController::class, 'productsOfUser']);
+    });
+    // Order endpoint
+    $router->group(['prefix' => 'order'], function () use ($router) {
+        $router->post('', [OrderController::class, 'placeOrder']);
     });
 });
