@@ -1,0 +1,63 @@
+.container {
+    margin: 8px;
+    margin-left: 24px;
+    margin-right: 24px;
+
+
+    .label {
+        color: #f85f6a;
+    }
+
+    .button {
+        color: #FFF;
+        background-color: #f85f6a;
+        width: 100%;
+        border-radius: 5px;
+        height: 32px;
+        border: none;
+    }
+    mat-form-field {
+        width: 100%;
+    }
+    
+    .password {
+        -webkit-text-security: disc;
+    }
+
+    .link {
+        margin-top: 24px;
+    }
+
+    .input_placeholder {
+        color: #989eb1;
+
+    }
+}
+
+@media screen and (min-width: 480px) {
+    .container {
+        margin: 8px;
+        margin-left: 24px;
+        margin-right: 24px;
+
+    
+        .label {
+            color: #f85f6a;
+        }
+    
+        .button {
+            color: #FFF;
+            background-color: #f85f6a;
+            width: 100%;
+            border-radius: 5px;
+            height: 32px;
+            border: none;
+        }
+
+        .password {
+            -webkit-text-security: disc;
+        }
+    }
+    
+  }
+

@@ -1,0 +1,95 @@
+<div class="container">
+    <div>
+        <h2>Konto erstellen</h2>
+    </div>
+
+    <form>
+        <div style="margin-top: 16px;">
+                <mat-radio-group aria-label="Select an option">
+                    <mat-radio-button checked class="radio_button" value="customer">Kunde</mat-radio-button>
+                    <br>
+                    <mat-radio-button class="radio_button" style="margin-top: 12px;" value="seller">Händler</mat-radio-button>
+                </mat-radio-group>  
+        </div>
+
+        <div style="margin-top: 8px;">
+            <mat-form-field class="example-full-width">
+                <mat-label class="label">Vorname</mat-label>
+                <input required matInput>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field class="example-full-width">
+                <mat-label class="label">Nachname</mat-label>
+                <input required matInput>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field class="example-full-width">
+                <mat-label class="label">Firma</mat-label>
+                <input matInput>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field class="example-full-width">
+                <mat-label class="label">Geburtsdatum</mat-label>
+                <input type="date" required matInput>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field class="example-full-width">
+                <mat-label class="label">Strasse und Hausnummer</mat-label>
+                <input required matInput>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field class="example-full-width">
+                <mat-label class="label">Postleizahl</mat-label>
+                <input required matInput>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field class="example-full-width">
+                <mat-label class="label">Ort</mat-label>
+                <input required matInput>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field class="example-full-width">
+                <mat-label class="label">Telefonnummer</mat-label>
+                <input required matInput>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field class="example-full-width">
+                <mat-label class="label">Email</mat-label>
+                <input type="email" required matInput>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field class="example-full-width">
+                <mat-label class="label">Passwort</mat-label>
+                <input required matInput class="password" >
+
+            </mat-form-field>
+        </div>
+
+        <div>
+            <button class="button">Konto erstellen</button>
+        </div>
+    </form>
+    <div class="link input_placeholder">
+        <div>
+            Sie haben ein Konto? <a class="label" routerLink="/login">Login</a>
+        </div>
+    </div>
+</div>
