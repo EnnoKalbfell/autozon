@@ -6,11 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-overview.component.scss']
 })
 export class ProductOverviewComponent implements OnInit {
-  products: number[];
-  constructor() { 
-    this.products = [
-      1,2,3,4,5
-    ]
+
+  constructor() {
   }
 
   ngOnInit(): void {
