@@ -5,7 +5,8 @@ import { ComponentsModule } from '../components/components.module';
 import { ProductOverviewComponent } from './product-overview/product-overview.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -19,7 +20,10 @@ import { RegistrationComponent } from './registration/registration.component';
   imports: [
     CommonModule,
     SharedModule,
-    ComponentsModule
+    ComponentsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ]
 })
 export class PagesModule { }

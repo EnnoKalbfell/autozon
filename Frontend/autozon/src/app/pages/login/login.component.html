@@ -1,27 +1,27 @@
 <div class="container">
     <div>
         <h2>Login</h2>
-        <p>Hallo, schön Sie wieder zu sehen</p>
+        <p style="color: #989eb1;">Hallo, schön Sie wieder zu sehen</p>
     </div>
 
     <form>
         <div style="margin-top: 16px;">
             <mat-form-field class="example-full-width">
                 <mat-label class="label">Email</mat-label>
-                <input required matInput>
+                <input name="email" [(ngModel)]="email" required matInput>
             </mat-form-field>
         </div>
 
         <div>
             <mat-form-field class="example-full-width">
                 <mat-label class="label">Passwort</mat-label>
-                <input required matInput class="password" >
+                <input name="password" [(ngModel)]="password" required matInput class="password" >
 
             </mat-form-field>
         </div>
 
         <div>
-            <button class="button">Login</button>
+            <button (click)="login()" class="button">Login</button>
         </div>
     </form>
     <div class="link">
