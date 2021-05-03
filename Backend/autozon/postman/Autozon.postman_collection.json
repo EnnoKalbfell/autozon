@@ -143,7 +143,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGgvc2lnbmluIiwiaWF0IjoxNjE5NjA3NTgxLCJleHAiOjE2MTk2MTExODEsIm5iZiI6MTYxOTYwNzU4MSwianRpIjoiSjVKVlZoNnZtaFdHczAxZyIsInN1YiI6MiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImlkIjoyLCJyb2xlIjoiZGVhbGVyIiwiZW1haWwiOiJ2ZXJpZmllZGRlYWxlckB0ZXN0LmNoIiwiZmlyc3ROYW1lIjoiVGVzdCIsImxhc3ROYW1lIjoiVmVyaWZpZWQgRGVhbGVyIn0.lnj3EaCTFF3tD-XavBxm_zLA9eMqsMBn4JlKxdnKiQ8",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGgvc2lnbmluIiwiaWF0IjoxNjE5NzEzMjkwLCJleHAiOjE2MTk3MTY4OTAsIm5iZiI6MTYxOTcxMzI5MCwianRpIjoiMUtYWThVdTF4a2VxMm9ZRCIsInN1YiI6NCwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImlkIjo0LCJyb2xlIjoiY3VzdG9tZXIiLCJlbWFpbCI6InVzZXJAdGVzdC5jaCIsImZpcnN0TmFtZSI6IlRlc3QiLCJsYXN0TmFtZSI6IlVzZXIifQ.wlW1DlqO5vMRtTkfqfgGOLYRngVLL445lPj364sL9lM",
 									"type": "string"
 								}
 							]
@@ -211,6 +211,78 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGgvc2lnbmluIiwiaWF0IjoxNjE5NzE1NjAxLCJleHAiOjE2MTk3MTkyMDEsIm5iZiI6MTYxOTcxNTYwMSwianRpIjoiV0diNzR1eDVYOVA5ZHdEdiIsInN1YiI6MiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImlkIjoyLCJyb2xlIjoiZGVhbGVyIiwiZW1haWwiOiJ2ZXJpZmllZGRlYWxlckB0ZXN0LmNoIiwiZmlyc3ROYW1lIjoiVGVzdCIsImxhc3ROYW1lIjoiVmVyaWZpZWQgRGVhbGVyIn0.A_XPFvBaYey4P0CSnRcT09KHtHgTnSToRuejxZUKGAQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{base}}:{{port}}/api/product/1/delete",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{base}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"product",
+								"1",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGgvc2lnbmluIiwiaWF0IjoxNjE5NzE1NjAxLCJleHAiOjE2MTk3MTkyMDEsIm5iZiI6MTYxOTcxNTYwMSwianRpIjoiV0diNzR1eDVYOVA5ZHdEdiIsInN1YiI6MiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImlkIjoyLCJyb2xlIjoiZGVhbGVyIiwiZW1haWwiOiJ2ZXJpZmllZGRlYWxlckB0ZXN0LmNoIiwiZmlyc3ROYW1lIjoiVGVzdCIsImxhc3ROYW1lIjoiVmVyaWZpZWQgRGVhbGVyIn0.A_XPFvBaYey4P0CSnRcT09KHtHgTnSToRuejxZUKGAQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Premium-Reifen\",\r\n    \"dealer\": 2,\r\n    \"manufacturer\": \"Michelin\",\r\n    \"price\": 89.30,\r\n    \"streetLegality\": 1,\r\n    \"carId\": 4,\r\n    \"shortDescription\": \"Dies sind Premium-Reifen\",\r\n    \"category\": \"Reifen\",\r\n    \"serialNumber\": \"155443345537\",\r\n    \"preview\": \"prev1\",\r\n    \"preview2\": \"prev2\",\r\n    \"preview3\": \"prev3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{base}}:{{port}}/api/product/create",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{base}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"product",
+								"create"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -225,7 +297,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGgvc2lnbmluIiwiaWF0IjoxNjE5NjA4MDg2LCJleHAiOjE2MTk2MTE2ODYsIm5iZiI6MTYxOTYwODA4NiwianRpIjoiSjlCN3pHSUgyVE9FVE9vaiIsInN1YiI6MiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImlkIjoyLCJyb2xlIjoiZGVhbGVyIiwiZW1haWwiOiJ2ZXJpZmllZGRlYWxlckB0ZXN0LmNoIiwiZmlyc3ROYW1lIjoiVGVzdCIsImxhc3ROYW1lIjoiVmVyaWZpZWQgRGVhbGVyIn0.u9iCGUAw8dk0hP9pjhoUumPR4nUbm8DFNJ0VkeyoBMA",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGgvc2lnbmluIiwiaWF0IjoxNjE5NzE1NjAxLCJleHAiOjE2MTk3MTkyMDEsIm5iZiI6MTYxOTcxNTYwMSwianRpIjoiV0diNzR1eDVYOVA5ZHdEdiIsInN1YiI6MiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImlkIjoyLCJyb2xlIjoiZGVhbGVyIiwiZW1haWwiOiJ2ZXJpZmllZGRlYWxlckB0ZXN0LmNoIiwiZmlyc3ROYW1lIjoiVGVzdCIsImxhc3ROYW1lIjoiVmVyaWZpZWQgRGVhbGVyIn0.A_XPFvBaYey4P0CSnRcT09KHtHgTnSToRuejxZUKGAQ",
 									"type": "string"
 								}
 							]
@@ -243,6 +315,50 @@
 								"api",
 								"user",
 								"products"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "order",
+			"item": [
+				{
+					"name": "placeOrder",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGgvc2lnbmluIiwiaWF0IjoxNjE5ODA1MjQyLCJleHAiOjE2MTk4MDg4NDIsIm5iZiI6MTYxOTgwNTI0MiwianRpIjoiSk1BalBwb0RMRmZZalpxcSIsInN1YiI6NCwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImlkIjo0LCJyb2xlIjoiY3VzdG9tZXIiLCJlbWFpbCI6InVzZXJAdGVzdC5jaCIsImZpcnN0TmFtZSI6IlRlc3QiLCJsYXN0TmFtZSI6IlVzZXIifQ.I-cnLvrf_Ufx5XLYX50MHsZKlOMRgH9rm01VRCi3nWk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productIds\": [1, 2]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{base}}:{{port}}/api/order",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{base}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"order"
 							]
 						}
 					},
