@@ -23,11 +23,7 @@ export default class ApiService {
   public get<T>(endPoint: string, options?: IRequestOptions): Observable<T> {
     return this.http.get<T>("/api/" + endPoint, options);
   }
-  public getPDF(endPoint: string): Observable<Blob> {
-    return this.http.get("/api/" + endPoint, {
-      responseType: 'blob',
-    });
-  }
+
   /**
    * A basic POST request template.
    *

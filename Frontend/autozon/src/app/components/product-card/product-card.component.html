@@ -1,10 +1,14 @@
-
-<h1>u working?</h1>
-
-<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="32px grid" fxLayoutAlign="flex-start">
-    <div fxFlex="0 1 calc(33.3%)" fxLayoutGap="16px" *ngFor="let product of products">
-        <mat-card>
-            <h1>{{ product.name }}</h1>
-        </mat-card>
-    </div>
-</div>
+<mat-card class="product-card">
+    <mat-card-header fxLayout="row" fxLayoutAlign="space-between start">
+            <mat-card-title>{{product.name}}</mat-card-title>
+            <mat-card-subtitle>{{product.category}}, {{product.dealer}}</mat-card-subtitle>
+            <button mat-button color="primary">hello</button>
+    </mat-card-header>
+    <img mat-card-image src="product.preview">
+    <mat-card-content>
+        <p> Preis: {{product.price}} </p>
+        <p [ngClass]="one-line-description"> {{product.shortDescription}} </p>
+        <!--TODO: Add routerLink="/details" as soon as Detail page exists-->
+        <a class="more" >Show more</a>
+    </mat-card-content>
+</mat-card>
