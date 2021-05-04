@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Product;
+use App\Models\Car;
+use App\Models\CarModel;
 use Doctrine\Common\Annotations\Reader;
 use Exception;
 use Illuminate\Http\Request;
@@ -15,13 +18,11 @@ class UserController extends Controller
      * Create a new controller instance.
      * @return void
      */
-    public function __construct() {
-      //
-    }
+    public function __construct() {}
 
     /**
      * Create new customer
-     * @return [userId, email]
+     * @return \Illuminate\Http\JsonResponse
      */
     public function createCustomer(Request $request) {
       // Server-side input validation
@@ -58,7 +59,7 @@ class UserController extends Controller
 
     /**
      * Create new dealer
-     * @return [userId, email]
+     * @return \Illuminate\Http\JsonResponse
      */
     public function createDealer(Request $request) {
       // Server-side input validation
@@ -96,19 +97,43 @@ class UserController extends Controller
 
     /**
      * Get user by user's email
-     * @return $user
+     * @param string $email
+     * @return User $user
      */
-    public static function userByEmail($email)
-    {
+    public static function userByEmail($email) {
       return User::where('email', $email)->first();
     }
 
     /**
      * Get user by user's id
-     * @return $user
+     * @param number $id
+     * @return User $user
      */
-    public static function userById($id)
-    {
+    public static function userById($id) {
       return User::where('id', $id)->first();
+    }
+
+    /**
+     * Get products created by authenticated user
+     * @return Product[] $products
+     */
+    public function productsOfUser() {
+      // Get authenticated user
+      $authController = new AuthController;
+      $user = $authController->authenticatedUser();
+      // Return error if user is not authorized to view their own products
+      if (!$user || $user->role !== 'dealer') {
+        return response()->json(['error' => 'Unauthorized'], 401);
+      }
+      // Search all products of authenticated user
+      $products = Product::where('dealer', $user->id)->get();
+      foreach ($products as $product) {
+        $car = Car::where('id', $product->carId)->first();
+        $carModel = CarModel::where('id', $car->carModelId)->first();
+  
+        $car->carModel = $carModel;
+        $product->car = $car;
+      }
+      return $products;
     }
 }
