@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
 class ProductController extends Controller
 {
@@ -15,11 +16,20 @@ class ProductController extends Controller
      */
     public function getAllProducts()
     {
-        return DB::table('product')->get();
+        $products = DB::table('product')->get();
+
+        foreach($products as $product){
+          $user = User::where('id', $product->dealer)->first();
+          $product->dealerName = $user->companyName;
+        }
+        return $products;
     }
 
     public static function productById($id)
     {
-      return Product::where('id', $id)->first();
+      $product = Product::where('id', $id)->first();
+      $user = User::where('id', $product->dealer)->first();
+      $product->dealerName = $user->companyName;
+      return $product;
     }
 }

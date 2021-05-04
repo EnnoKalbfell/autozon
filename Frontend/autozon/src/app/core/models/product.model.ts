@@ -3,7 +3,7 @@ import { NumberSymbol } from "@angular/common";
 export interface IProduct{
     id?: number;
     name?: string;
-    dealer?: number;
+    dealerName?: string;
     manufacturer?: string;
     price?: number;
     streetLegality?: boolean;
