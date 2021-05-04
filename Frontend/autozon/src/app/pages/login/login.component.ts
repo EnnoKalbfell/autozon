@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    if (this.email == '' || this.password == '') return;
     this.loginService.login(this.email, this.password);
   }
 }

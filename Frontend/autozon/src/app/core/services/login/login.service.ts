@@ -17,15 +17,21 @@ export class LoginService {
         email: username,
         password: password
       }).subscribe((res: any) => {
-        localStorage.setItem('token', res.token)
+        sessionStorage.setItem('token', res.token)
+        sessionStorage.setItem('role', res.role)
+        sessionStorage.setItem('user', res.user)
       })
   }
 
   /**
    * getToken
    */
-  public getToken() {
-    return localStorage.getItem('token')
+  public getUser() {
+    return {
+      user: sessionStorage.getItem('user'),
+      token: sessionStorage.getItem('token'),
+      role: sessionStorage.getItem('role')
+    }
   }
 
   /**
@@ -44,7 +50,7 @@ export class LoginService {
         zipCode: zipCode,
         city: city
       }).subscribe((res: any) => {
-        localStorage.setItem('token', res.token)
+        sessionStorage.setItem('token', res.token)
       })
   }
 
@@ -65,7 +71,7 @@ export class LoginService {
         zipCode: zipCode,
         city: city
       }).subscribe((res: any) => {
-        localStorage.setItem('token', res.token)
+        sessionStorage.setItem('token', res.token)
       })
   }
 }
