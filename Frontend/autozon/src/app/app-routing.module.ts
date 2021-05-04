@@ -7,7 +7,7 @@ import { RegistrationComponent } from './pages/registration/registration.compone
 
 
 const routes: Routes = [
-  {
+  { 
     path: '',
     component: BaseLayoutComponent,
     children: [

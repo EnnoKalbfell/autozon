@@ -7,10 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductOverviewComponent implements OnInit {
   products: number[];
-  constructor() { 
+  constructor() {
     this.products = [
-      1,2,3,4,5
-    ]
+      1, 2, 3, 4, 5
+    ];
   }
 
   ngOnInit(): void {

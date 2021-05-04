@@ -1,0 +1,370 @@
+{
+	"info": {
+		"_postman_id": "b7cbe75d-ae2c-4e75-b498-21e0570ad2bf",
+		"name": "Autozon",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "signup",
+					"item": [
+						{
+							"name": "dealer",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": \"Create\",\r\n    \"lastName\": \"Dealer\",\r\n    \"companyName\": \"Dealer Company\",\r\n    \"email\": \"createDealer@test.ch\",\r\n    \"password\": \"sml12345\",\r\n    \"phone\": \"0762224433\",\r\n    \"streetAndHouseNumber\": \"Dealerstreet 99\",\r\n    \"zipCode\": \"3001\",\r\n    \"city\": \"Bern\",\r\n    \"country\": \"Switzerland\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{protocol}}://{{base}}:{{port}}/api/auth/signup/dealer",
+									"protocol": "{{protocol}}",
+									"host": [
+										"{{base}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"auth",
+										"signup",
+										"dealer"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "customer",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": \"Create\",\r\n    \"lastName\": \"Customer\",\r\n    \"email\": \"createCustomer@test.ch\",\r\n    \"password\": \"sml12345\",\r\n    \"phone\": \"\",\r\n    \"streetAndHouseNumber\": \"Customerstreet 99\",\r\n    \"zipCode\": \"3001\",\r\n    \"city\": \"Bern\",\r\n    \"country\": \"Switzerland\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{protocol}}://{{base}}:{{port}}/api/auth/signup/customer",
+									"protocol": "{{protocol}}",
+									"host": [
+										"{{base}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"api",
+										"auth",
+										"signup",
+										"customer"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "signin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"email\": \"user@test.ch\",\r\n\t\"password\": \"sml12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{base}}:{{port}}/api/auth/signin",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{base}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signin dealer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"email\": \"verifieddealer@test.ch\",\r\n\t\"password\": \"sml12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{base}}:{{port}}/api/auth/signin",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{base}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGgvc2lnbmluIiwiaWF0IjoxNjE5NzEzMjkwLCJleHAiOjE2MTk3MTY4OTAsIm5iZiI6MTYxOTcxMzI5MCwianRpIjoiMUtYWThVdTF4a2VxMm9ZRCIsInN1YiI6NCwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImlkIjo0LCJyb2xlIjoiY3VzdG9tZXIiLCJlbWFpbCI6InVzZXJAdGVzdC5jaCIsImZpcnN0TmFtZSI6IlRlc3QiLCJsYXN0TmFtZSI6IlVzZXIifQ.wlW1DlqO5vMRtTkfqfgGOLYRngVLL445lPj364sL9lM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{base}}:{{port}}/api/auth/signout",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{base}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"auth",
+								"signout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "product",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{base}}:{{port}}/api/product",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{base}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{base}}:{{port}}/api/product/1",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{base}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"product",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGgvc2lnbmluIiwiaWF0IjoxNjE5NzE1NjAxLCJleHAiOjE2MTk3MTkyMDEsIm5iZiI6MTYxOTcxNTYwMSwianRpIjoiV0diNzR1eDVYOVA5ZHdEdiIsInN1YiI6MiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImlkIjoyLCJyb2xlIjoiZGVhbGVyIiwiZW1haWwiOiJ2ZXJpZmllZGRlYWxlckB0ZXN0LmNoIiwiZmlyc3ROYW1lIjoiVGVzdCIsImxhc3ROYW1lIjoiVmVyaWZpZWQgRGVhbGVyIn0.A_XPFvBaYey4P0CSnRcT09KHtHgTnSToRuejxZUKGAQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{base}}:{{port}}/api/product/1/delete",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{base}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"product",
+								"1",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGgvc2lnbmluIiwiaWF0IjoxNjE5NzE1NjAxLCJleHAiOjE2MTk3MTkyMDEsIm5iZiI6MTYxOTcxNTYwMSwianRpIjoiV0diNzR1eDVYOVA5ZHdEdiIsInN1YiI6MiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImlkIjoyLCJyb2xlIjoiZGVhbGVyIiwiZW1haWwiOiJ2ZXJpZmllZGRlYWxlckB0ZXN0LmNoIiwiZmlyc3ROYW1lIjoiVGVzdCIsImxhc3ROYW1lIjoiVmVyaWZpZWQgRGVhbGVyIn0.A_XPFvBaYey4P0CSnRcT09KHtHgTnSToRuejxZUKGAQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Premium-Reifen\",\r\n    \"dealer\": 2,\r\n    \"manufacturer\": \"Michelin\",\r\n    \"price\": 89.30,\r\n    \"streetLegality\": 1,\r\n    \"carId\": 4,\r\n    \"shortDescription\": \"Dies sind Premium-Reifen\",\r\n    \"category\": \"Reifen\",\r\n    \"serialNumber\": \"155443345537\",\r\n    \"preview\": \"prev1\",\r\n    \"preview2\": \"prev2\",\r\n    \"preview3\": \"prev3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{base}}:{{port}}/api/product/create",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{base}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"product",
+								"create"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "productsOfUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGgvc2lnbmluIiwiaWF0IjoxNjE5NzE1NjAxLCJleHAiOjE2MTk3MTkyMDEsIm5iZiI6MTYxOTcxNTYwMSwianRpIjoiV0diNzR1eDVYOVA5ZHdEdiIsInN1YiI6MiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImlkIjoyLCJyb2xlIjoiZGVhbGVyIiwiZW1haWwiOiJ2ZXJpZmllZGRlYWxlckB0ZXN0LmNoIiwiZmlyc3ROYW1lIjoiVGVzdCIsImxhc3ROYW1lIjoiVmVyaWZpZWQgRGVhbGVyIn0.A_XPFvBaYey4P0CSnRcT09KHtHgTnSToRuejxZUKGAQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}://{{base}}:{{port}}/api/user/products",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{base}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"user",
+								"products"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "order",
+			"item": [
+				{
+					"name": "placeOrder",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGgvc2lnbmluIiwiaWF0IjoxNjE5ODA1MjQyLCJleHAiOjE2MTk4MDg4NDIsIm5iZiI6MTYxOTgwNTI0MiwianRpIjoiSk1BalBwb0RMRmZZalpxcSIsInN1YiI6NCwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyIsImlkIjo0LCJyb2xlIjoiY3VzdG9tZXIiLCJlbWFpbCI6InVzZXJAdGVzdC5jaCIsImZpcnN0TmFtZSI6IlRlc3QiLCJsYXN0TmFtZSI6IlVzZXIifQ.I-cnLvrf_Ufx5XLYX50MHsZKlOMRgH9rm01VRCi3nWk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productIds\": [1, 2]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}://{{base}}:{{port}}/api/order",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{base}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"api",
+								"order"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
