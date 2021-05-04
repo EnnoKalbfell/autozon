@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 
 
@@ -15,7 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
     // enter page declaration
     ProductOverviewComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    ProductDetailComponent
   ],
   imports: [
     CommonModule,
