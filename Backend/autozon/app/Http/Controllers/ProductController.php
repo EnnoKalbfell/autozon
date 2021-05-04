@@ -27,7 +27,7 @@ class ProductController extends Controller
     $products = DB::table('product')->get();
     foreach ($products as $product) {
       $user = User::where('id', $product->dealer)->first();
-      $product->dealerName = $user->companyName;
+      $product->dealer = $user;
       $car = Car::where('id', $product->carId)->first();
       $carModel = CarModel::where('id', $car->carModelId)->first();
 
@@ -47,7 +47,7 @@ class ProductController extends Controller
     $car = Car::where('id', $product->carId)->first();
     $carModel = CarModel::where('id', $car->carModelId)->first();
     $user = User::where('id', $product->dealer)->first();
-    $product->dealerName = $user->companyName;
+    $product->dealer = $user;
     $car->carModel = $carModel;
     $product->car = $car;
     return $product;
