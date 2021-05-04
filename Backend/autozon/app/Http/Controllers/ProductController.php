@@ -9,10 +9,11 @@ use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
 class ProductController extends Controller
 {
-    /**
+  /**
    * Create a new controller instance.
    * @return void
    */
@@ -25,6 +26,8 @@ class ProductController extends Controller
   public function getAllProducts() {
     $products = DB::table('product')->get();
     foreach ($products as $product) {
+      $user = User::where('id', $product->dealer)->first();
+      $product->dealer = $user;
       $car = Car::where('id', $product->carId)->first();
       $carModel = CarModel::where('id', $car->carModelId)->first();
 
@@ -43,7 +46,8 @@ class ProductController extends Controller
     $product = Product::where('id', $id)->first();
     $car = Car::where('id', $product->carId)->first();
     $carModel = CarModel::where('id', $car->carModelId)->first();
-
+    $user = User::where('id', $product->dealer)->first();
+    $product->dealer = $user;
     $car->carModel = $carModel;
     $product->car = $car;
     return $product;

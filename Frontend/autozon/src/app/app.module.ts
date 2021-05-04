@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -7,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { PagesModule } from './pages/pages.module';
 import { BaseLayoutComponent } from './layout/base-layout/base-layout.component';
+import { ComponentsModule } from './components/components.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,6 +20,8 @@ import { BaseLayoutComponent } from './layout/base-layout/base-layout.component'
     BrowserAnimationsModule,
     SharedModule,
     PagesModule,
+    ComponentsModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule
   ],
