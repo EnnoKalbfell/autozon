@@ -46,5 +46,13 @@ class CarModelTableSeeder extends Seeder
             'engineNumber' => '1.4L',
             'vinNumber' => 'asdfkjh'
         ]);
+
+        DB::table('carModel')->insert([
+            'carModel' => '350Z',
+            'carModelYear' => 2010,
+            'fuel' => 'petrol',
+            'engineNumber' => '3.2L',
+            'vinNumber' => 'asdfkjh'
+        ]);
     }
 }
