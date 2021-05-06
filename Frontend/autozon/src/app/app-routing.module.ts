@@ -8,7 +8,7 @@ import { MyProductOverviewComponent } from './pages/my-product-overview/my-produ
 
 
 const routes: Routes = [
-  { 
+  {
     path: '',
     component: BaseLayoutComponent,
     children: [

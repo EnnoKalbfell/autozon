@@ -14,11 +14,11 @@ export class ProductOverviewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.productService.fetchProductData().subscribe(res =>{
-      if(res !== undefined){
+    this.productService.fetchProductData().subscribe(res => {
+      if (res !== undefined){
         this.products = res;
       }
-    })
+    });
   }
 
 }

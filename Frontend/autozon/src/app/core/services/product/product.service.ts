@@ -18,8 +18,8 @@ export class ProductService {
     const productSource$ = new BehaviorSubject<IProduct[]>([]);
 
     this.apiService.get('product').subscribe(response => {
-      productSource$.next(response as IProduct[])
-    })
+      productSource$.next(response as IProduct[]);
+    });
     return productSource$;
   }
 
@@ -29,10 +29,10 @@ export class ProductService {
     const token: string = sessionStorage.getItem('token') || '';
     const requestOptions: IRequestOptions = {
       headers: new HttpHeaders({['Authorization']: `Bearer ${token}`})
-    }
+    };
     this.apiService.get('user/products', requestOptions).subscribe(response => {
-      productSource$.next(response as IProduct[])
-    })
+      productSource$.next(response as IProduct[]);
+    });
     return productSource$;
-  }  
+  }
 }
