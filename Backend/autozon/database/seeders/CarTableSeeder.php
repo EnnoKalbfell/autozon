@@ -34,5 +34,10 @@ class CarTableSeeder extends Seeder
             'carBrand' => 'Smart',
             'carModelId' => 4
         ]);
+
+        DB::table('car')->insert([
+            'carBrand' => 'Nissan',
+            'carModelId' => 5
+        ]);
     }
 }

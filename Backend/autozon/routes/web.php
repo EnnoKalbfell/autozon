@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CarController;
+use App\Http\Controllers\CarModelController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
 
@@ -46,5 +48,10 @@ $router->group([
     // Order endpoint
     $router->group(['prefix' => 'order'], function () use ($router) {
         $router->post('', [OrderController::class, 'placeOrder']);
+    });
+
+    $router->group(['prefix' => 'car'], function () use ($router) {
+        $router->get('model', [CarModelController::class, 'getAllCarsFromBrand']);
+        $router->get('', [CarController::class, 'getAllCarBrands']);
     });
 });
