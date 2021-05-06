@@ -25,7 +25,7 @@ export class ProductService {
 
   fetchMyProductData(): BehaviorSubject<IProduct[]> {
     const productSource$ = new BehaviorSubject<IProduct[]>([]);
-    // TODO: Get currently active token as soon as token is saved in session storage
+
     const token: string = sessionStorage.getItem('token') || '';
     const requestOptions: IRequestOptions = {
       headers: new HttpHeaders({['Authorization']: `Bearer ${token}`})
