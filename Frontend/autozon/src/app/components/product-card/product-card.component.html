@@ -11,4 +11,7 @@
         <!--TODO: Add routerLink="/details" as soon as Detail page exists-->
         <!--<a class="more" >Show more</a>-->
     </mat-card-content>
+    <mat-card-actions *ngIf="showDeleteButton()">
+        <button mat-raised-button color="primary" class="deleteButton">Delete</button>
+    </mat-card-actions>
 </mat-card>

@@ -9,14 +9,18 @@ import { IProduct } from 'src/app/core/models/product.model';
 export class ProductCardComponent implements OnInit {
 
   @Input() product: IProduct = {};
-  showMore: boolean = false;
+  showMore = false;
+  route: string = window.location.pathname;
 
-  constructor() {
+  constructor() {}
 
-   }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-    
+  showDeleteButton(): boolean {
+    if (this.route === '/my-products') {
+      return true;
+    }
+    return false;
   }
 
 }
