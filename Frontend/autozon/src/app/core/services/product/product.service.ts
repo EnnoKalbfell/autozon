@@ -35,4 +35,17 @@ export class ProductService {
     });
     return productSource$;
   }
+
+  deleteMyProduct(id: number): any {
+    const response$ = new BehaviorSubject<JSON | undefined>(undefined);
+
+    const token: string = sessionStorage.getItem('token') || '';
+    const requestOptions: IRequestOptions = {
+      headers: new HttpHeaders({['Authorization']: `Bearer ${token}`})
+    };
+    this.apiService.delete(`product/${id}/delete`, requestOptions).subscribe(res => {
+      response$.next(JSON.parse(JSON.stringify(res)));
+    });
+    return response$;
+  }
 }
