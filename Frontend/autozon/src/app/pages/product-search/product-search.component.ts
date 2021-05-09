@@ -25,17 +25,28 @@ export class ProductSearchComponent implements OnInit {
     });
   }
 
-  getModelsFromBrand(test: string): void {
-    this.productSearchService.fetchModels(test).subscribe((res) => {
+  getModelsFromBrand(brand: string): void {
+    this.productSearchService.fetchModels(brand).subscribe((res) => {
       if (res !== undefined) {
         this.carModels = res;
       }
     });
-    this.selectedBrand = test;
+    this.selectedBrand = brand;
   }
 
-  filterForResult(test: string): void {
-    this.selectedModel = test;
-    console.log(this.selectedBrand, this.selectedModel);
+  filterForResult(model: string): void {
+    this.selectedModel = model;
+  }
+
+  submitFormData(): void {
+    if (this.selectedModel !== '' || this.selectedBrand !== '') {
+      
+      this.productSearchService.safeSelectedValue(
+        this.selectedBrand,
+        this.selectedModel
+      )
+      console.log(this.productSearchService.getBrandAndModel());
+      
+    }
   }
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from 'src/app/core/models/product.model';
 import { ProductService } from 'src/app/core/services/product/product.service';
+import { ProductSearchService } from 'src/app/core/services/product-serarch/product-search.service';
+
 
 @Component({
   selector: 'app-product-overview',
@@ -9,8 +11,9 @@ import { ProductService } from 'src/app/core/services/product/product.service';
 })
 export class ProductOverviewComponent implements OnInit {
   products: IProduct[] = [];
+  car = {};
 
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService, private productSearchService: ProductSearchService) {
   }
 
   ngOnInit(): void {
@@ -19,6 +22,10 @@ export class ProductOverviewComponent implements OnInit {
         this.products = res;
       }
     })
+
+    this.car = this.productSearchService.getBrandAndModel();
+    console.log(this.car);
+        
   }
 
 }
