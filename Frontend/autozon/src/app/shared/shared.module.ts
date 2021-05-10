@@ -7,7 +7,7 @@ import { MaterialModule } from '../core/material/material.module';
 @NgModule({
   declarations: [],
   exports: [
-    MaterialModule, 
+    MaterialModule,
     FlexLayoutModule,
     CoreModule
   ]

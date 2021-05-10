@@ -20,9 +20,13 @@ export class ProductOverviewComponent implements OnInit {
         var searchParams = new URLSearchParams(window.location.search);
         var brand = searchParams.get('brand');
         var model = searchParams.get('model');
+        console.log(brand);
+        console.log(model);
         var temp = this.products;
-        this.products = [];
-        temp.forEach((element) => {
+        if (brand !== null && model !== null) {
+          this.products = [];
+          
+          temp.forEach((element) => {
           if (
             element.car?.carBrand === brand &&
             element.car?.carModel.carModel === model
@@ -30,6 +34,9 @@ export class ProductOverviewComponent implements OnInit {
             this.products.push(element);
           }
         });
+        }
+
+        
         // TODO: Error message if(this.products === null)
       }
     });

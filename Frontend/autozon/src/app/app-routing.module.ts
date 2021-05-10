@@ -5,16 +5,21 @@ import { ProductOverviewComponent } from './pages/product-overview/product-overv
 import { LoginComponent } from './pages/login/login.component';
 import { RegistrationComponent } from './pages/registration/registration.component';
 import { ProductSearchComponent } from './pages/product-search/product-search.component';
+import { MyProductOverviewComponent } from './pages/my-product-overview/my-product-overview.component';
 
 
 const routes: Routes = [
-  { 
+  {
     path: '',
     component: BaseLayoutComponent,
     children: [
       {
         path: '',
         component: ProductOverviewComponent
+      },
+      {
+        path: 'my-products',
+        component: MyProductOverviewComponent
       }
     ]
   },
@@ -29,6 +34,10 @@ const routes: Routes = [
   {
     path: 'search',
     component: ProductSearchComponent
+  },
+  {
+    path: '**',
+    component: LoginComponent,
   }
 ];
 

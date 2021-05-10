@@ -128,11 +128,13 @@ class UserController extends Controller
       // Search all products of authenticated user
       $products = Product::where('dealer', $user->id)->get();
       foreach ($products as $product) {
+        $user = User::where('id', $product->dealer)->first();
         $car = Car::where('id', $product->carId)->first();
         $carModel = CarModel::where('id', $car->carModelId)->first();
   
         $car->carModel = $carModel;
         $product->car = $car;
+        $product->dealer = $user;
       }
       return $products;
     }
