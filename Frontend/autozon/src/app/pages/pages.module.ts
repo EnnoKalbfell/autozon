@@ -8,6 +8,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { MyProductOverviewComponent } from './my-product-overview/my-product-overview.component';
 
 
 
@@ -15,6 +16,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
   declarations: [
     // enter page declaration
     ProductOverviewComponent,
+    MyProductOverviewComponent,
     LoginComponent,
     RegistrationComponent,
     ProductDetailComponent

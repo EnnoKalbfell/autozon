@@ -5,10 +5,11 @@ import { ProductOverviewComponent } from './pages/product-overview/product-overv
 import { LoginComponent } from './pages/login/login.component';
 import { RegistrationComponent } from './pages/registration/registration.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
+import { MyProductOverviewComponent } from './pages/my-product-overview/my-product-overview.component';
 
 
 const routes: Routes = [
-  { 
+  {
     path: '',
     component: BaseLayoutComponent,
     children: [
@@ -19,6 +20,10 @@ const routes: Routes = [
       {
         path: 'details',
         component: ProductDetailComponent
+      },
+      {
+        path: 'my-products',
+        component: MyProductOverviewComponent
       }
     ]
   },
@@ -29,6 +34,10 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegistrationComponent
+  },
+  {
+    path: '**',
+    component: LoginComponent,
   }
 ];
 

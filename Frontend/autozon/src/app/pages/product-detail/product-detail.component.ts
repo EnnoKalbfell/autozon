@@ -9,17 +9,17 @@ import { ProductIdService, ProductService } from 'src/app/core/services/product/
 })
 export class ProductDetailComponent implements OnInit {
   product: IProduct = {};
-  constructor(private productIdService: ProductIdService, private productService: ProductService) { 
+  constructor(private productIdService: ProductIdService, private productService: ProductService) {
   }
 
   ngOnInit(): void {
     const id = this.productIdService.getId();
 
     this.productService.fetchDetailProductData(id).subscribe(res => {
-      if(res !== undefined){
+      if (res !== undefined) {
         this.product = res;
       }
-    })
+    });
   }
 
 }

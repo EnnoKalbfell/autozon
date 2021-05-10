@@ -1,7 +1,7 @@
-import { NumberSymbol } from "@angular/common";
-import { IterableChangeRecord } from "@angular/core";
-import { ICar } from "./car.model";
-import { IUser } from "./user.model";
+import { NumberSymbol } from '@angular/common';
+import { IterableChangeRecord } from '@angular/core';
+import { ICar } from './car.model';
+import { IUser } from './user.model';
 
 export interface IProduct{
     id?: number;
