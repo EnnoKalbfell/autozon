@@ -9,8 +9,6 @@ import ApiService, { IRequestOptions } from '../api/api.service';
   providedIn: 'root',
 })
 export class ProductSearchService {
-  brand = '';
-  model = '';
 
   constructor(private apiService: ApiService) {}
 
@@ -33,16 +31,5 @@ export class ProductSearchService {
       carModelSource$.next(response as ICarModel[]);
     });
     return carModelSource$;
-  }
-
-  safeSelectedValue(newBrand: string, newModel: string) {
-    this.brand = newBrand;
-    this.model = newModel;
-  }
-
-  getBrandAndModel() {
-    console.log(this.brand, this.model);
-    
-    return [{ brand: this.brand, model: this.model }];
   }
 }

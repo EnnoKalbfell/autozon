@@ -1,5 +1,8 @@
 <h1>Angebote</h1>
 
-<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="16px grid" fxLayoutAlign="start stretch">
+<div *ngIf="products.length !== 0" fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="16px grid" fxLayoutAlign="start stretch">
     <app-product-card fxFlex="33%" fxLayoutGap="16px" *ngFor="let product of products" [product]="product" ></app-product-card>
+</div>
+<div *ngIf="products.length === 0">
+    <p>Es wurden keine passenden Produkte gefunden.</p>
 </div>

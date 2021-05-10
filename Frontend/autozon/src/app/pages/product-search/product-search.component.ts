@@ -40,13 +40,12 @@ export class ProductSearchComponent implements OnInit {
 
   submitFormData(): void {
     if (this.selectedModel !== '' || this.selectedBrand !== '') {
-      
-      this.productSearchService.safeSelectedValue(
-        this.selectedBrand,
-        this.selectedModel
-      )
-      console.log(this.productSearchService.getBrandAndModel());
-      
+      let url =
+        'http://localhost:4200?brand=' +
+        this.selectedBrand +
+        '&model=' +
+        this.selectedModel;
+      window.location.replace(url);
     }
   }
 }
