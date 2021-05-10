@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IProduct } from 'src/app/core/models/product.model';
+import { ProductIdService } from 'src/app/core/services/product/product.service';
 import { ProductService } from 'src/app/core/services/product/product.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog/delete-confirmation-dialog.component';
@@ -13,8 +14,9 @@ import { IUser } from 'src/app/core/models/user.model';
   styleUrls: ['./product-card.component.scss']
 })
 export class ProductCardComponent implements OnInit {
-
-  @Input() product: IProduct = {};
+  @Input() product: IProduct;
+  showMore: boolean = false;
+  route: string = window.location.pathname;
   user: IUser = {
     id: 0,
     lastName: '',
@@ -29,10 +31,15 @@ export class ProductCardComponent implements OnInit {
     role: '',
     verified: false
   };
-  showMore = false;
-  route: string = window.location.pathname;
 
-  constructor(private productService: ProductService, private loginService: LoginService, public dialog: MatDialog) {}
+  constructor(
+    private ProductIdService: ProductIdService,
+    private productService: ProductService,
+    private loginService: LoginService,
+    public dialog: MatDialog
+  ) {
+    this.product = {}
+  }
 
   ngOnInit(): void {
     this.loginService.getUser().subscribe(res => {
@@ -54,6 +61,13 @@ export class ProductCardComponent implements OnInit {
       return true;
     }
     return false;
+  }
+  
+  clickDetails() {
+    const id = this.product.id;
+    if(id){
+      this.ProductIdService.setId(id); 
+    } 
   }
 
   /**
