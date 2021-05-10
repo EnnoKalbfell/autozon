@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IProduct } from 'src/app/core/models/product.model';
+import { ProductIdService } from 'src/app/core/services/product/product.service';
 import { ProductService } from 'src/app/core/services/product/product.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog/delete-confirmation-dialog.component';
@@ -11,11 +12,17 @@ import { DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog
 })
 export class ProductCardComponent implements OnInit {
 
-  @Input() product: IProduct = {};
-  showMore = false;
+  @Input() product: IProduct;
+  showMore: boolean = false;
   route: string = window.location.pathname;
 
-  constructor(private productService: ProductService, public dialog: MatDialog) {}
+  constructor(
+    private ProductIdService: ProductIdService,
+    private productService: ProductService,
+    public dialog: MatDialog
+  ) {
+    this.product = {}
+  }
 
   ngOnInit(): void {}
 
@@ -24,6 +31,13 @@ export class ProductCardComponent implements OnInit {
       return true;
     }
     return false;
+  }
+
+  clickDetails() {
+    const id = this.product.id;
+    if(id){
+      this.ProductIdService.setId(id); 
+    } 
   }
 
   openDialog(): void {
