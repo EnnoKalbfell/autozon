@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IProduct } from 'src/app/core/models/product.model';
+import { ProductIdService } from 'src/app/core/services/product/product.service';
 
 @Component({
   selector: 'app-product-card',
@@ -8,15 +9,22 @@ import { IProduct } from 'src/app/core/models/product.model';
 })
 export class ProductCardComponent implements OnInit {
 
-  @Input() product: IProduct = {};
+  @Input() product: IProduct;
   showMore: boolean = false;
 
-  constructor() {
-
-   }
+  constructor(private ProductIdService: ProductIdService) {
+    this.product = {}
+  }
 
   ngOnInit(): void {
     
+  }
+
+  clickDetails() {
+    const id = this.product.id;
+    if(id){
+      this.ProductIdService.setId(id); 
+    } 
   }
 
 }

@@ -18,4 +18,31 @@ export class ProductService {
     })
     return productSource$;
   }   
+
+  fetchDetailProductData(id: any): BehaviorSubject<IProduct> {
+    const productSource$ = new BehaviorSubject<IProduct>({});
+
+    this.apiService.get('product/' + id).subscribe(res => {
+      productSource$.next(res as IProduct)
+    })
+    return productSource$
+  }
+}
+@Injectable()
+export class ProductIdService {
+  public sharedData:number;
+
+  constructor(){
+    this.sharedData = 0;
+  }
+
+  setId(id:number){
+    localStorage.setItem("productId", JSON.stringify(id));
+  }
+
+  getId(){
+    this.sharedData = Number(localStorage.getItem("productId"));
+    return this.sharedData
+
+  }
 }
