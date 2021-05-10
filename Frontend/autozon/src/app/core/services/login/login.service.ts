@@ -20,6 +20,9 @@ export class LoginService {
       password: password
     }).subscribe((res: any) => {
       sessionStorage.setItem('token', res.access_token);
+      if (res.access_token) {
+        console.log(JSON.stringify(this.getUser()));
+      }
     });
   }
 
@@ -27,20 +30,19 @@ export class LoginService {
    * getToken
    */
   public getUser() {
-    const userSource$ = new BehaviorSubject<IUser | null>(null);
+    const userSource$ = new BehaviorSubject<IUser | undefined>(undefined);
     
+    const token: string = sessionStorage.getItem('token') || '';
     const requestOptions: IRequestOptions = {
-      headers: new HttpHeaders({['Authorization']: `Bearer ${sessionStorage.getItem('token')}`})
-    }
+      headers: new HttpHeaders({['Authorization']: `Bearer ${token}`})
+    };
     // TODO: Passing authorization header seems not to work
-    this.apiService.post('auth/authenticatedUser', requestOptions).subscribe((res: any) => {
-      userSource$.next(res as IUser)
+    this.apiService.post('auth/authenticatedUser', requestOptions).subscribe(res => {
+      userSource$.next(JSON.parse(JSON.stringify(res)) as IUser)
+      console.log('res', res);
     });
 
-    return {
-      user: userSource$,
-      token: sessionStorage.getItem('token')
-    };
+    return userSource$
   }
 
   /**

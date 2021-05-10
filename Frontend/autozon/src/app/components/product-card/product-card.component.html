@@ -21,4 +21,7 @@
             Löschen
         </button>
     </mat-card-actions>
+    <mat-card-actions *ngIf="!showDeleteButton()">
+        <button mat-raised-button color="primary" class="deleteButton" (click)="addToCart()">In den Warenkorb</button>
+    </mat-card-actions>
 </mat-card>

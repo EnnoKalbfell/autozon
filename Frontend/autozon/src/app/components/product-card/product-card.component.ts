@@ -3,6 +3,7 @@ import { IProduct } from 'src/app/core/models/product.model';
 import { ProductService } from 'src/app/core/services/product/product.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog/delete-confirmation-dialog.component';
+import { ICartModel } from 'src/app/core/models/cart.model';
 
 @Component({
   selector: 'app-product-card',
@@ -49,4 +50,36 @@ export class ProductCardComponent implements OnInit {
       });
     }
   }
+
+  /**
+   * Add product to cart array in session storage
+   */
+  addToCart(): void {
+    // TODO: Test if logged in user is of role "customer"
+    if (this.product.id) {
+      const cartContent: string = sessionStorage.getItem('cart') || '[]';
+      var cartArray: ICartModel[] = JSON.parse(cartContent);
+      var found: boolean = false;
+
+      cartArray.forEach((entry: ICartModel) => {
+        // Increase amount if product is already in cart
+        if (entry.id === this.product.id) {
+          entry.amount+= 1;
+          found = true;
+        }
+      });
+
+      // Add new entry in cart array
+      if (!found) {
+        cartArray.push({
+          id: this.product.id,
+          amount: 1
+        });
+      }
+
+      // Save to sessions storage
+      sessionStorage.setItem('cart', JSON.stringify(cartArray));
+    }
+  }
+
 }
