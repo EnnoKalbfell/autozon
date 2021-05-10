@@ -3,16 +3,12 @@
     margin-left: 24px;
     margin-right: 24px;
 
-
     .label {
         color: #f85f6a;
     }
 
     .button {
         width: 100%;
-        border-radius: 5px;
-        height: 32px;
-        border: none;
     }
     mat-form-field {
         width: 100%;
@@ -46,15 +42,6 @@
     
         .label {
             color: #f85f6a;
-        }
-    
-        .button {
-            color: #FFF;
-            background-color: #f85f6a;
-            width: 100%;
-            border-radius: 5px;
-            height: 32px;
-            border: none;
         }
 
         .password {

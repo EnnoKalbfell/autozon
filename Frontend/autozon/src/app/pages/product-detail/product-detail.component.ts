@@ -54,7 +54,7 @@ export class ProductDetailComponent implements OnInit {
    * Show cart button if authenticated user is customer and not on my-product page
    */
   showCartButton(): boolean {
-    if (this.user.role == 'customer' && this.route !== '/my-products') {
+    if (this.user.role === 'customer' && this.route !== '/my-products') {
       return true;
     }
     return false;
@@ -64,15 +64,15 @@ export class ProductDetailComponent implements OnInit {
    * Add product to cart array in session storage
    */
   addToCart(): void {
-    if (this.product.id && this.user.role === "customer") {
+    if (this.product.id && this.user.role === 'customer') {
       const cartContent: string = sessionStorage.getItem('cart') || '[]';
-      var cartArray: ICartModel[] = JSON.parse(cartContent);
-      var found: boolean = false;
+      const cartArray: ICartModel[] = JSON.parse(cartContent);
+      let found = false;
 
       cartArray.forEach((entry: ICartModel) => {
         // Increase amount if product is already in cart
         if (entry.id === this.product.id) {
-          entry.amount+= 1;
+          entry.amount += 1;
           found = true;
         }
       });

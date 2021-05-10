@@ -15,8 +15,6 @@ import { IUser } from 'src/app/core/models/user.model';
 })
 export class ProductCardComponent implements OnInit {
   @Input() product: IProduct;
-  showMore: boolean = false;
-  route: string = window.location.pathname;
   user: IUser = {
     id: 0,
     lastName: '',
@@ -31,14 +29,16 @@ export class ProductCardComponent implements OnInit {
     role: '',
     verified: false
   };
+  showMore = false;
+  route: string = window.location.pathname;
 
   constructor(
-    private ProductIdService: ProductIdService,
+    private productIdService: ProductIdService,
     private productService: ProductService,
     private loginService: LoginService,
     public dialog: MatDialog
   ) {
-    this.product = {}
+    this.product = {};
   }
 
   ngOnInit(): void {
@@ -54,20 +54,20 @@ export class ProductCardComponent implements OnInit {
    * Show delete button if authenticated user is dealer and on my-product page
    */
   showDeleteButton(): boolean {
-    if (this.user.role == 'dealer' && this.route === '/my-products') {
+    if (this.user.role === 'dealer' && this.route === '/my-products') {
       return true;
     }
     return false;
   }
-  
+
   /**
    * Open details of product
    */
-  clickDetails() {
+  clickDetails(): void {
     const id = this.product.id;
-    if(id){
-      this.ProductIdService.setId(id); 
-    } 
+    if (id) {
+      this.productIdService.setId(id);
+    }
   }
 
   /**
@@ -90,7 +90,7 @@ export class ProductCardComponent implements OnInit {
    * Delete this product
    */
   deleteProduct(): void {
-    if (this.product.id && this.user.role === "dealer") {
+    if (this.product.id && this.user.role === 'dealer') {
       this.productService.deleteMyProduct(this.product.id).subscribe((res: JSON) => {
         if (res !== undefined) {
           // Reload to not show deleted product anymore

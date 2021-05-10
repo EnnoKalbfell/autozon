@@ -14,10 +14,10 @@ export class LoginService {
   /**
    * login
    */
-  public login(username: String, password: String) {
+  public login(username: string, password: string): void {
     this.apiService.post('auth/signin', {
       email: username,
-      password: password
+      password
     }).subscribe((res: any) => {
       sessionStorage.setItem('token', res.access_token);
     });
@@ -26,60 +26,75 @@ export class LoginService {
   /**
    * getToken
    */
-  public getUser() {
+  public getUser(): BehaviorSubject<IUser | undefined> {
     const userSource$ = new BehaviorSubject<IUser | undefined>(undefined);
-    
+
     const token: string = sessionStorage.getItem('token') || '';
     const requestOptions: IRequestOptions = {
       headers: new HttpHeaders({['Authorization']: `Bearer ${token}`})
     };
     this.apiService.post('auth/authenticatedUser', {}, requestOptions).subscribe(res => {
-      userSource$.next(JSON.parse(JSON.stringify(res)) as IUser)
-      console.log('res', res);
+      userSource$.next(JSON.parse(JSON.stringify(res)) as IUser);
     });
 
-    return userSource$
+    return userSource$;
   }
 
   /**
    * registerCustomer
    */
-  public registerCustomer(lastname: string, firstname: string, email: string, password: string, phone: string, streetAndHouseNumber: string,
-    zipCode: string, city: string) {
+  public registerCustomer(
+    lastname: string,
+    firstname: string,
+    email: string,
+    password: string,
+    phone: string,
+    streetAndHouseNumber: string,
+    zipCode: string,
+    city: string
+  ): void {
       this.apiService.post('auth/signup/customer',
       {
-        lastname: lastname,
-        firstname: firstname,
-        email: email,
-        password: password,
-        phone: phone,
-        streetAndHouseNumber: streetAndHouseNumber,
-        zipCode: zipCode,
-        city: city
+        lastName: lastname,
+        firstName: firstname,
+        email,
+        password,
+        phone,
+        streetAndHouseNumber,
+        zipCode,
+        city
       }).subscribe((res: any) => {
         // sessionStorage.setItem('token', res.token)
-      })
+      });
   }
 
   /**
    * registerDealer
    */
-  public registerDealer(companyname: string, lastname: string, firstname: string, email: string, password: string, phone: string, streetAndHouseNumber: string,
-    zipCode: string, city: string) {
+  public registerDealer(
+    companyname: string,
+    lastname: string,
+    firstname: string,
+    email: string,
+    password: string,
+    phone: string,
+    streetAndHouseNumber: string,
+    zipCode: string,
+    city: string
+  ): void {
       this.apiService.post('http://localhost:3000/auth/signup/dealer',
       {
-        companyname: companyname,
-        lastname: lastname,
-        firstname: firstname,
-        email: email,
-        password: password,
-        phone: phone,
-        streetAndHouseNumber: streetAndHouseNumber,
-        zipCode: zipCode,
-        city: city
+        companyName: companyname,
+        lastName: lastname,
+        firstName: firstname,
+        email,
+        password,
+        phone,
+        streetAndHouseNumber,
+        zipCode,
+        city
       }).subscribe((res: any) => {
         // sessionStorage.setItem('token', res.token)
-      })
+      });
   }
 }
-

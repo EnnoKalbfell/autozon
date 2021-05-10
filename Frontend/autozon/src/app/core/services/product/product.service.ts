@@ -66,11 +66,11 @@ export class ProductIdService {
     this.sharedData = 0;
   }
 
-  setId(id:number): void {
+  setId(id: number): void {
     localStorage.setItem('productId', JSON.stringify(id));
   }
 
-  getId(): Number {
+  getId(): number {
     this.sharedData = Number(localStorage.getItem('productId'));
     return this.sharedData;
   }
