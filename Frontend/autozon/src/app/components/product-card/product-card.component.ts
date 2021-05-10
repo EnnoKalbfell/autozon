@@ -42,6 +42,7 @@ export class ProductCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // Get currently authenticated user
     this.loginService.getUser().subscribe(res => {
       if (res !== undefined) {
         this.user = res;
@@ -49,20 +50,19 @@ export class ProductCardComponent implements OnInit {
     });
   }
 
+  /**
+   * Show delete button if authenticated user is dealer and on my-product page
+   */
   showDeleteButton(): boolean {
     if (this.user.role == 'dealer' && this.route === '/my-products') {
       return true;
     }
     return false;
   }
-
-  showCartButton(): boolean {
-    if (this.user.role == 'customer' && this.route !== '/my-products') {
-      return true;
-    }
-    return false;
-  }
   
+  /**
+   * Open details of product
+   */
   clickDetails() {
     const id = this.product.id;
     if(id){
@@ -99,35 +99,4 @@ export class ProductCardComponent implements OnInit {
       });
     }
   }
-
-  /**
-   * Add product to cart array in session storage
-   */
-  addToCart(): void {
-    if (this.product.id && this.user.role === "customer") {
-      const cartContent: string = sessionStorage.getItem('cart') || '[]';
-      var cartArray: ICartModel[] = JSON.parse(cartContent);
-      var found: boolean = false;
-
-      cartArray.forEach((entry: ICartModel) => {
-        // Increase amount if product is already in cart
-        if (entry.id === this.product.id) {
-          entry.amount+= 1;
-          found = true;
-        }
-      });
-
-      // Add new entry in cart array
-      if (!found) {
-        cartArray.push({
-          id: this.product.id,
-          amount: 1
-        });
-      }
-
-      // Save to sessions storage
-      sessionStorage.setItem('cart', JSON.stringify(cartArray));
-    }
-  }
-
 }

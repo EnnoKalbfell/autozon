@@ -35,9 +35,15 @@
     </mat-card-content>
     <mat-card-actions>
     </mat-card-actions>
-    
-
 </mat-card>
 
-<button class="cart-button" mat-raised-button color="primary">In Warenkorb legen</button>
+<button
+    class="cart-button"
+    mat-raised-button
+    color="primary"
+    (click)="addToCart()"
+    *ngIf="showCartButton()"
+>
+    In Warenkorb legen
+</button>
 </div>
