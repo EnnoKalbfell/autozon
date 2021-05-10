@@ -4,6 +4,8 @@ import { ProductService } from 'src/app/core/services/product/product.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog/delete-confirmation-dialog.component';
 import { ICartModel } from 'src/app/core/models/cart.model';
+import { LoginService } from 'src/app/core/services/login/login.service';
+import { IUser } from 'src/app/core/models/user.model';
 
 @Component({
   selector: 'app-product-card',
@@ -13,20 +15,50 @@ import { ICartModel } from 'src/app/core/models/cart.model';
 export class ProductCardComponent implements OnInit {
 
   @Input() product: IProduct = {};
+  user: IUser = {
+    id: 0,
+    lastName: '',
+    firstName: '',
+    companyName: '',
+    email: '',
+    phone: '',
+    streetAndHouseNumber: '',
+    zipCode: '',
+    city: '',
+    country: '',
+    role: '',
+    verified: false
+  };
   showMore = false;
   route: string = window.location.pathname;
 
-  constructor(private productService: ProductService, public dialog: MatDialog) {}
+  constructor(private productService: ProductService, private loginService: LoginService, public dialog: MatDialog) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.loginService.getUser().subscribe(res => {
+      if (res !== undefined) {
+        this.user = res;
+      }
+    });
+  }
 
   showDeleteButton(): boolean {
-    if (this.route === '/my-products') {
+    if (this.user.role == 'dealer' && this.route === '/my-products') {
       return true;
     }
     return false;
   }
 
+  showCartButton(): boolean {
+    if (this.user.role == 'customer' && this.route !== '/my-products') {
+      return true;
+    }
+    return false;
+  }
+
+  /**
+   * Open the deletation confirmation
+   */
   openDialog(): void {
     const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {
       width: 'auto',
@@ -40,8 +72,11 @@ export class ProductCardComponent implements OnInit {
     });
   }
 
+  /**
+   * Delete this product
+   */
   deleteProduct(): void {
-    if (this.product.id) {
+    if (this.product.id && this.user.role === "dealer") {
       this.productService.deleteMyProduct(this.product.id).subscribe((res: JSON) => {
         if (res !== undefined) {
           // Reload to not show deleted product anymore
@@ -55,8 +90,7 @@ export class ProductCardComponent implements OnInit {
    * Add product to cart array in session storage
    */
   addToCart(): void {
-    // TODO: Test if logged in user is of role "customer"
-    if (this.product.id) {
+    if (this.product.id && this.user.role === "customer") {
       const cartContent: string = sessionStorage.getItem('cart') || '[]';
       var cartArray: ICartModel[] = JSON.parse(cartContent);
       var found: boolean = false;

@@ -20,9 +20,6 @@ export class LoginService {
       password: password
     }).subscribe((res: any) => {
       sessionStorage.setItem('token', res.access_token);
-      if (res.access_token) {
-        console.log(JSON.stringify(this.getUser()));
-      }
     });
   }
 
@@ -36,8 +33,7 @@ export class LoginService {
     const requestOptions: IRequestOptions = {
       headers: new HttpHeaders({['Authorization']: `Bearer ${token}`})
     };
-    // TODO: Passing authorization header seems not to work
-    this.apiService.post('auth/authenticatedUser', requestOptions).subscribe(res => {
+    this.apiService.post('auth/authenticatedUser', {}, requestOptions).subscribe(res => {
       userSource$.next(JSON.parse(JSON.stringify(res)) as IUser)
       console.log('res', res);
     });
