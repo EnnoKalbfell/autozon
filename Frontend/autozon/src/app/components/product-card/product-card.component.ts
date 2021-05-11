@@ -15,6 +15,8 @@ import { IUser } from 'src/app/core/models/user.model';
 })
 export class ProductCardComponent implements OnInit {
   @Input() product: IProduct;
+  @Input() amount: number;
+  @Input() allProducts: ICartModel[];
   user: IUser = {
     id: 0,
     lastName: '',
@@ -39,6 +41,8 @@ export class ProductCardComponent implements OnInit {
     public dialog: MatDialog
   ) {
     this.product = {};
+    this.amount = 0;
+    this.allProducts = [];
   }
 
   ngOnInit(): void {
@@ -48,16 +52,6 @@ export class ProductCardComponent implements OnInit {
         this.user = res;
       }
     });
-  }
-
-  /**
-   * Show delete button if authenticated user is dealer and on my-product page
-   */
-  showDeleteButton(): boolean {
-    if (this.user.role === 'dealer' && this.route === '/my-products') {
-      return true;
-    }
-    return false;
   }
 
   /**
@@ -98,5 +92,24 @@ export class ProductCardComponent implements OnInit {
         }
       });
     }
+  }
+
+  /**
+   * Remove a product from cart
+   */
+  removeProduct(): void {
+    this.allProducts.forEach((p: ICartModel, i: number) => {
+      if (p.id === this.product.id) {
+        if (p.amount > 1) {
+          // Decrease amount by one
+          p.amount--;
+        } else {
+          // Remove whole product if 0 are in cart
+          this.allProducts.splice(i, 1);
+        }
+        sessionStorage.setItem('cart', JSON.stringify(this.allProducts));
+        return;
+      }
+    });
   }
 }

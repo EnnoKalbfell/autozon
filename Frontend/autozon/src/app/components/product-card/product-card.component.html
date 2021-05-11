@@ -8,15 +8,27 @@
     <mat-card-content>
         <p> Preis: {{product.price}} </p>
         <p class="one-line-description"> {{product.shortDescription}} </p>
+        <p *ngIf="user.role === 'customer' && route === '/cart'">Anzahl: {{amount}} </p>
     </mat-card-content>
-    <mat-card-actions *ngIf="showDeleteButton()">
+    <mat-card-actions *ngIf="user.role === 'dealer' && route === '/my-products'">
         <button
             mat-raised-button
-            color="primary"
             class="deleteButton"
+            color="accent"
             (click)="openDialog()"
         >
             Löschen
+        </button>
+    </mat-card-actions>
+
+    <mat-card-actions *ngIf="user.role === 'customer' && route === '/cart'">
+        <button
+            mat-raised-button
+            class="cartButton"
+            color="accent"
+            (click)="removeProduct()"
+        >
+            Entfernen
         </button>
     </mat-card-actions>
 </mat-card>
