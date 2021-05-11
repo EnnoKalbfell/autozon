@@ -19,4 +19,5 @@ export interface IProduct{
     preview2?: string;
     preview3?: string;
     car?: ICar;
+
 }

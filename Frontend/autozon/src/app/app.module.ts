@@ -9,7 +9,7 @@ import { SharedModule } from './shared/shared.module';
 import { PagesModule } from './pages/pages.module';
 import { BaseLayoutComponent } from './layout/base-layout/base-layout.component';
 import { ComponentsModule } from './components/components.module';
-import { ProductSearchComponent } from './pages/product-search/product-search.component';
+import { ProductIdService } from './core/services/product/product.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +26,7 @@ import { ProductSearchComponent } from './pages/product-search/product-search.co
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [ProductIdService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

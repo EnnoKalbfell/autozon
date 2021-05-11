@@ -8,9 +8,9 @@ import { RegistrationComponent } from './registration/registration.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductSearchComponent } from './product-search/product-search.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { MyProductOverviewComponent } from './my-product-overview/my-product-overview.component';
-
-
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,9 @@ import { MyProductOverviewComponent } from './my-product-overview/my-product-ove
     MyProductOverviewComponent,
     LoginComponent,
     RegistrationComponent,
-    ProductSearchComponent
+    ProductSearchComponent,
+    ProductDetailComponent,
+    CartComponent
   ],
   imports: [
     CommonModule,
