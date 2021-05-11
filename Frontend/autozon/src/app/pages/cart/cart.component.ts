@@ -73,12 +73,12 @@ export class CartComponent implements OnInit {
    * Order all products from cart
    */
   order(): void {
-    let productIds: number[] = [];
+    const productIds: number[] = [];
     // Build request param
     this.products.forEach((p: ICartModel) => {
       // Add productId once per amount
       for (let i = 0; i < p.amount; i++) {
-        productIds.push(p.id);        
+        productIds.push(p.id);
       }
     });
 
@@ -89,7 +89,6 @@ export class CartComponent implements OnInit {
         sessionStorage.removeItem('cart');
         window.location.reload();
       }
-    });    
+    });
   }
-
 }

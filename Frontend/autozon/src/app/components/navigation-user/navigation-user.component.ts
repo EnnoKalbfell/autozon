@@ -24,7 +24,7 @@ export class NavigationUserComponent implements OnInit {
     role: '',
     verified: false
   };
-  
+
   constructor(private loginService: LoginService) {}
 
   ngOnInit(): void {

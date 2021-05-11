@@ -76,16 +76,16 @@ export class NavigationComponent implements OnInit {
     this.loginService.getUser().subscribe(res => {
       if (res) {
         let links;
-        switch(res.role) {
+        switch (res.role) {
           case 'dealer':
             links = this.dealerNav;
-          break;
+            break;
           case 'customer':
             links = this.customerNav;
-          break;
+            break;
           default:
             links = this.visitorNav;
-          break;
+            break;
         }
         this.setLinks(links);
       }
@@ -97,6 +97,21 @@ export class NavigationComponent implements OnInit {
     this.links = links;
   }
 
+  /**
+   * Also navigate if list item instead of link is clicked
+   * @param link to which the page should navigate
+   */
+  navigate(link: INav): void {
+    if (link.function !== undefined) {
+      this.callLogout();
+    } else {
+      this.router.navigate([link.url]);
+    }
+  }
+
+  /**
+   * Initiate logout
+   */
   callLogout(): void {
     this.loginService.logout().subscribe(res => {
       if (res) {

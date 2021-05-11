@@ -69,7 +69,7 @@ export class ProductService {
 
     this.apiService.post('order', {productIds}, requestOptions).subscribe(res => {
       response$.next(JSON.parse(JSON.stringify(res)));
-    });;
+    });
     return response$;
   }
 }
