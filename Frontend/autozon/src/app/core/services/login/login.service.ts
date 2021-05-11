@@ -54,6 +54,11 @@ export class LoginService {
     const userSource$ = new BehaviorSubject<IUser | undefined>(undefined);
 
     const token: string = sessionStorage.getItem('token') || '';
+
+    if (token === '') {
+      return userSource$;
+    }
+
     const requestOptions: IRequestOptions = {
       headers: new HttpHeaders({['Authorization']: `Bearer ${token}`})
     };

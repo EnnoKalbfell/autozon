@@ -83,11 +83,13 @@ export class CartComponent implements OnInit {
     });
 
     // Place request
-    this.productService.placeOrder(productIds);
-
-    // Remove all products from sessionStorage
-    sessionStorage.removeItem('cart');
-    window.location.reload();
+    this.productService.placeOrder(productIds).subscribe(res => {
+      if (res !== undefined) {
+        // Remove all products from sessionStorage
+        sessionStorage.removeItem('cart');
+        window.location.reload();
+      }
+    });    
   }
 
 }
