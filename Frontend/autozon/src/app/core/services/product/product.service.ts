@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { IProduct } from '../../models/product.model';
 import ApiService, { IRequestOptions } from '../api/api.service';
-import { HttpHeaders } from '@angular/common/http';
+import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { ICartModel } from '../../models/cart.model';
 
 @Injectable({
@@ -35,6 +35,20 @@ export class ProductService {
       productSource$.next(response as IProduct[]);
     });
     return productSource$;
+  }
+
+  createNewProduct(newProduct: IProduct): any{
+    const response$ = new BehaviorSubject<JSON | undefined>(undefined);
+
+    const token: string = sessionStorage.getItem('token') || '';
+    const requestOptions: IRequestOptions = {
+      headers: new HttpHeaders({['Authorization']: `Bearer ${token}`})
+    };
+
+    this.apiService.post('product/create', requestOptions).subscribe(res => {
+      response$.next(JSON.parse(JSON.stringify(res)));
+    });
+    return response$;
   }
 
   deleteMyProduct(id: number): any {
