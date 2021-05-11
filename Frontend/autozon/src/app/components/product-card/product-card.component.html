@@ -8,9 +8,9 @@
     <mat-card-content>
         <p> Preis: {{product.price}} </p>
         <p class="one-line-description"> {{product.shortDescription}} </p>
-        <p *ngIf="user.role === 'customer' && route === '/cart'">Anzahl: {{amount}} </p>
+        <p *ngIf="user !== undefined && user.role === 'customer' && route === '/cart'">Anzahl: {{amount}} </p>
     </mat-card-content>
-    <mat-card-actions *ngIf="user.role === 'dealer' && route === '/my-products'">
+    <mat-card-actions *ngIf="user !== undefined && user.role === 'dealer' && route === '/my-products'">
         <button
             mat-raised-button
             class="deleteButton"
@@ -21,7 +21,7 @@
         </button>
     </mat-card-actions>
 
-    <mat-card-actions *ngIf="user.role === 'customer' && route === '/cart'">
+    <mat-card-actions *ngIf="user !== undefined && user.role === 'customer' && route === '/cart'">
         <button
             mat-raised-button
             class="cartButton"

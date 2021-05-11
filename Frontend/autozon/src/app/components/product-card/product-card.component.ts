@@ -84,7 +84,7 @@ export class ProductCardComponent implements OnInit {
    * Delete this product
    */
   deleteProduct(): void {
-    if (this.product.id && this.user.role === 'dealer') {
+    if (this.product.id && this.user !== undefined && this.user.role === 'dealer') {
       this.productService.deleteMyProduct(this.product.id).subscribe((res: JSON) => {
         if (res !== undefined) {
           // Reload to not show deleted product anymore

@@ -13,7 +13,7 @@ import { ProductIdService } from './core/services/product/product.service';
 @NgModule({
   declarations: [
     AppComponent,
-    BaseLayoutComponent
+    BaseLayoutComponent,
   ],
   imports: [
     BrowserModule,

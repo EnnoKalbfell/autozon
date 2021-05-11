@@ -4,16 +4,16 @@
     mat-raised-button
     color="primary"
     class="createButton"
-    *ngIf="user.role === 'dealer'"
+    *ngIf="user !== undefined && user.role === 'dealer'"
 >
     Angebot erstellen
 </button>
 
-<div *ngIf="products.length == 0 && user.role === 'dealer'">
+<div *ngIf="products.length == 0 && user !== undefined && user.role === 'dealer'">
     <p>Es wurden keine von Ihnen erstellten Angebote gefunden.</p>
 </div>
 
-<div *ngIf="user.role !== 'dealer'">
+<div *ngIf="user !== undefined && user.role !== 'dealer'">
     <p>Sie haben keine Rechte, eigene Produkte zu erstellen.</p>
 </div>
 

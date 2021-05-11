@@ -82,8 +82,6 @@ export class CartComponent implements OnInit {
       }
     });
 
-    console.log(productIds);
-
     // Place request
     this.productService.placeOrder(productIds);
 
