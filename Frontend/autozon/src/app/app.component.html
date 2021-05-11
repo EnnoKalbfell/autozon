@@ -1,3 +1,18 @@
-<div class="content-wrapper">
-    <router-outlet></router-outlet>
+<div>
+    <mat-drawer-container class="drawerContainer" autosize>
+        <mat-drawer #drawer class="sidenav" mode="side">
+            <app-navigation></app-navigation>
+        </mat-drawer>
+
+        <mat-toolbar color="primary">
+            <button mat-icon-button aria-label="menu-button" (click)="drawer.toggle()">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <span>Autozon</span>
+        </mat-toolbar>
+
+        <div class="content-wrapper">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-drawer-container>
 </div>
