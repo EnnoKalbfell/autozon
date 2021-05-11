@@ -3,13 +3,14 @@ import ApiService, { IRequestOptions } from '../api/api.service';
 import { HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { IUser } from '../../models/user.model';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private router: Router) { }
 
   /**
    * login
@@ -20,6 +21,9 @@ export class LoginService {
       password
     }).subscribe((res: any) => {
       sessionStorage.setItem('token', res.access_token);
+      this.router.navigate(['/']).then(() => {
+        window.location.reload();
+      });
     });
   }
 

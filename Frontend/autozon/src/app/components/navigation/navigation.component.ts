@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { INav } from 'src/app/core/models/nav.model';
 import { LoginService } from 'src/app/core/services/login/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navigation',
@@ -68,7 +69,7 @@ export class NavigationComponent implements OnInit {
   links: INav[] = this.visitorNav;
   route: string = window.location.pathname;
 
-  constructor(private loginService: LoginService) {}
+  constructor(private loginService: LoginService, private router: Router) {}
 
   ngOnInit(): void {
     // Choose nav for role
@@ -100,7 +101,9 @@ export class NavigationComponent implements OnInit {
     this.loginService.logout().subscribe(res => {
       if (res) {
         this.setLinks(this.visitorNav);
-        window.location.replace('localhost:4200/login');
+        this.router.navigate(['/login']).then(() => {
+          window.location.reload();
+        });
       }
     });
   }

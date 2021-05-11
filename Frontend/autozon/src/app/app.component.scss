@@ -9,5 +9,11 @@
 }
 
 .sidenav {
-    width: 30vw;
+    width: 25vw;
+}
+
+@media screen and (max-width: 700px) {
+    .sidenav {
+        width: 75vw;
+    }
 }
