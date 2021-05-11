@@ -9,8 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { MyProductOverviewComponent } from './my-product-overview/my-product-overview.component';
-
-
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +18,8 @@ import { MyProductOverviewComponent } from './my-product-overview/my-product-ove
     MyProductOverviewComponent,
     LoginComponent,
     RegistrationComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    CartComponent
   ],
   imports: [
     CommonModule,

@@ -6,6 +6,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegistrationComponent } from './pages/registration/registration.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { MyProductOverviewComponent } from './pages/my-product-overview/my-product-overview.component';
+import { CartComponent } from './pages/cart/cart.component';
 
 
 const routes: Routes = [
@@ -24,6 +25,10 @@ const routes: Routes = [
       {
         path: 'my-products',
         component: MyProductOverviewComponent
+      },
+      {
+        path: 'cart',
+        component: CartComponent
       }
     ]
   },

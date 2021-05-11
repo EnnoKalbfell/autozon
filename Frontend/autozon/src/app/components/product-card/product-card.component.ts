@@ -4,6 +4,9 @@ import { ProductIdService } from 'src/app/core/services/product/product.service'
 import { ProductService } from 'src/app/core/services/product/product.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog/delete-confirmation-dialog.component';
+import { ICartModel } from 'src/app/core/models/cart.model';
+import { LoginService } from 'src/app/core/services/login/login.service';
+import { IUser } from 'src/app/core/models/user.model';
 
 @Component({
   selector: 'app-product-card',
@@ -11,35 +14,59 @@ import { DeleteConfirmationDialogComponent } from '../delete-confirmation-dialog
   styleUrls: ['./product-card.component.scss']
 })
 export class ProductCardComponent implements OnInit {
-
   @Input() product: IProduct;
-  showMore: boolean = false;
+  @Input() amount: number;
+  @Input() allProducts: ICartModel[];
+  user: IUser = {
+    id: 0,
+    lastName: '',
+    firstName: '',
+    companyName: '',
+    email: '',
+    phone: '',
+    streetAndHouseNumber: '',
+    zipCode: '',
+    city: '',
+    country: '',
+    role: '',
+    verified: false
+  };
+  showMore = false;
   route: string = window.location.pathname;
 
   constructor(
-    private ProductIdService: ProductIdService,
+    private productIdService: ProductIdService,
     private productService: ProductService,
+    private loginService: LoginService,
     public dialog: MatDialog
   ) {
-    this.product = {}
+    this.product = {};
+    this.amount = 0;
+    this.allProducts = [];
   }
 
-  ngOnInit(): void {}
-
-  showDeleteButton(): boolean {
-    if (this.route === '/my-products') {
-      return true;
-    }
-    return false;
+  ngOnInit(): void {
+    // Get currently authenticated user
+    this.loginService.getUser().subscribe(res => {
+      if (res !== undefined) {
+        this.user = res;
+      }
+    });
   }
 
-  clickDetails() {
+  /**
+   * Open details of product
+   */
+  clickDetails(): void {
     const id = this.product.id;
-    if(id){
-      this.ProductIdService.setId(id); 
-    } 
+    if (id) {
+      this.productIdService.setId(id);
+    }
   }
 
+  /**
+   * Open the deletation confirmation
+   */
   openDialog(): void {
     const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent, {
       width: 'auto',
@@ -53,8 +80,11 @@ export class ProductCardComponent implements OnInit {
     });
   }
 
+  /**
+   * Delete this product
+   */
   deleteProduct(): void {
-    if (this.product.id) {
+    if (this.product.id && this.user.role === 'dealer') {
       this.productService.deleteMyProduct(this.product.id).subscribe((res: JSON) => {
         if (res !== undefined) {
           // Reload to not show deleted product anymore
@@ -62,5 +92,24 @@ export class ProductCardComponent implements OnInit {
         }
       });
     }
+  }
+
+  /**
+   * Remove a product from cart
+   */
+  removeProduct(): void {
+    this.allProducts.forEach((p: ICartModel, i: number) => {
+      if (p.id === this.product.id) {
+        if (p.amount > 1) {
+          // Decrease amount by one
+          p.amount--;
+        } else {
+          // Remove whole product if 0 are in cart
+          this.allProducts.splice(i, 1);
+        }
+        sessionStorage.setItem('cart', JSON.stringify(this.allProducts));
+        return;
+      }
+    });
   }
 }
