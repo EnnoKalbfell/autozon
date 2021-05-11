@@ -1,7 +1,8 @@
 <mat-nav-list>
     <mat-list-item class="link" *ngFor="let link of links">
         <mat-icon matListIcon>{{link.icon}}</mat-icon>
-        <a matLine routerLink="{{link.url}}">{{ link.name }}</a>
+        <a matLine *ngIf="link.function === undefined" routerLink="{{link.url}}">{{ link.name }}</a>
+        <a matLine *ngIf="link.function" (click)="link.function()">{{ link.name }}</a>
     </mat-list-item>
 </mat-nav-list>
   

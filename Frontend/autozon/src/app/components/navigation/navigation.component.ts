@@ -41,7 +41,8 @@ export class NavigationComponent implements OnInit {
     {
       url: '/logout',
       name: 'Abmelden',
-      icon: 'logout'
+      icon: 'logout',
+      function: () => this.callLogout()
     }
   ];
 
@@ -59,7 +60,8 @@ export class NavigationComponent implements OnInit {
     {
       url: '/logout',
       name: 'Abmelden',
-      icon: 'logout'
+      icon: 'logout',
+      function: () => this.callLogout()
     }
   ];
 
@@ -92,5 +94,14 @@ export class NavigationComponent implements OnInit {
 
   setLinks(links: INav[]): void {
     this.links = links;
+  }
+
+  callLogout(): void {
+    this.loginService.logout().subscribe(res => {
+      if (res) {
+        this.setLinks(this.visitorNav);
+        window.location.replace('localhost:4200/login');
+      }
+    });
   }
 }

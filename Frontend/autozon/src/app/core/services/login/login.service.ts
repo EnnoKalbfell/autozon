@@ -24,6 +24,26 @@ export class LoginService {
   }
 
   /**
+   * Logout
+   */
+  public logout(): BehaviorSubject<string | undefined> {
+    const logoutSource$ = new BehaviorSubject<string | undefined>(undefined);
+
+    const token: string = sessionStorage.getItem('token') || '';
+    const requestOptions: IRequestOptions = {
+      headers: new HttpHeaders({['Authorization']: `Bearer ${token}`})
+    };
+    this.apiService.post('auth/signout', {}, requestOptions).subscribe(res => {
+      if (res) {
+        sessionStorage.removeItem('token');
+        logoutSource$.next('logged out');
+      }
+    });
+
+    return logoutSource$;
+  }
+
+  /**
    * getToken
    */
   public getUser(): BehaviorSubject<IUser | undefined> {
