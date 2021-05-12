@@ -13,7 +13,7 @@ export class NavigationComponent implements OnInit {
   @Input() toggleDrawer: () => void;
   visitorNav: INav[] = [
     {
-      url: '/search',
+      url: '/',
       name: 'Suche',
       icon: 'search'
     },
@@ -31,7 +31,7 @@ export class NavigationComponent implements OnInit {
 
   customerNav: INav[] = [
     {
-      url: '/search',
+      url: '/',
       name: 'Suche',
       icon: 'search'
     },
@@ -50,7 +50,7 @@ export class NavigationComponent implements OnInit {
 
   dealerNav: INav[] = [
     {
-      url: '/search',
+      url: '/',
       name: 'Suche',
       icon: 'search'
     },
@@ -74,7 +74,7 @@ export class NavigationComponent implements OnInit {
     private loginService: LoginService,
     private router: Router
   ) {
-    this.toggleDrawer = () => {}
+    this.toggleDrawer = () => {};
   }
 
   ngOnInit(): void {

@@ -1,10 +1,10 @@
 <h1>Warenkorb</h1>
 
-<div *ngIf="products.length === 0 && user.role === 'customer'">
+<div *ngIf="products.length === 0 && user !== undefined && user.role === 'customer'">
     <p>Sie haben Ihrem Warenkorb noch keine Produkte hinzugefügt.</p>
 </div>
 
-<div *ngIf="user.role !== 'customer'">
+<div *ngIf="user !== undefined && user.role !== 'customer'">
     <p>Sie haben keine Rechte, Produkte zu bestellen</p>
 </div>
 
@@ -13,7 +13,7 @@
     fxLayout.xs="column"
     fxLayoutGap="16px grid"
     fxLayoutAlign="start stretch"
-    *ngIf="products.length > 0 && user.role === 'customer'"
+    *ngIf="products.length > 0 && user !== undefined && user.role === 'customer'"
 >
     <app-product-card
         fxFlex="33%"
@@ -30,7 +30,7 @@
     mat-raised-button
     color="primary"
     (click)="order()"
-    *ngIf="products.length > 0 && user.role === 'customer'"
+    *ngIf="products.length > 0 && user !== undefined && user.role === 'customer'"
 >
     Bestellen
 </button>

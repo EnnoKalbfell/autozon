@@ -18,6 +18,6 @@ export interface IProduct{
     preview?: string;
     preview2?: string;
     preview3?: string;
-    car?: ICar[];
+    car?: ICar;
 
 }

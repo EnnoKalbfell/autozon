@@ -17,5 +17,5 @@ export interface ICartModel {
   preview?: string;
   preview2?: string;
   preview3?: string;
-  car?: ICar[];
+  car?: ICar;
 }
