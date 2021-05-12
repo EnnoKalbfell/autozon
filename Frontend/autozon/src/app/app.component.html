@@ -1,13 +1,12 @@
 <div>
-    <mat-drawer-container class="drawerContainer" autosize>
+    <mat-drawer-container class="drawerContainer" autosize [hasBackdrop]="true">
         <mat-drawer #drawer class="sidenav" mode="side">
             <app-navigation-user></app-navigation-user>
-            <app-navigation></app-navigation>
+            <app-navigation [toggleDrawer]="toggleSideNav"></app-navigation>
         </mat-drawer>
 
         <mat-toolbar color="primary">
-            <!-- TODO: Close drawer after navigating -->
-            <button mat-icon-button aria-label="menu-button" (click)="drawer.toggle()">
+            <button mat-icon-button aria-label="menu-button" (click)="toggleSideNav()">
                 <mat-icon>menu</mat-icon>
             </button>
             <span>Autozon</span>

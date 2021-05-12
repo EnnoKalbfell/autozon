@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { INav } from 'src/app/core/models/nav.model';
 import { LoginService } from 'src/app/core/services/login/login.service';
 import { Router } from '@angular/router';
@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
   providers: [LoginService]
 })
 export class NavigationComponent implements OnInit {
+  @Input() toggleDrawer: () => void;
   visitorNav: INav[] = [
     {
       url: '/search',
@@ -69,7 +70,12 @@ export class NavigationComponent implements OnInit {
   links: INav[] = this.visitorNav;
   route: string = window.location.pathname;
 
-  constructor(private loginService: LoginService, private router: Router) {}
+  constructor(
+    private loginService: LoginService,
+    private router: Router
+  ) {
+    this.toggleDrawer = () => {}
+  }
 
   ngOnInit(): void {
     // Choose nav for role
@@ -106,6 +112,7 @@ export class NavigationComponent implements OnInit {
       this.callLogout();
     } else {
       this.router.navigate([link.url]);
+      this.toggleDrawer();
     }
   }
 
