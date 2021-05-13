@@ -44,7 +44,7 @@ export class ProductService {
     const requestOptions: IRequestOptions = {
       headers: new HttpHeaders({['Authorization']: `Bearer ${token}`})
     };
-    this.apiService.delete(`product/${id}/delete`, requestOptions).subscribe(res => {
+    this.apiService.put(`product/${id}/delete`, {}, requestOptions).subscribe(res => {
       response$.next(JSON.parse(JSON.stringify(res)));
     });
     return response$;

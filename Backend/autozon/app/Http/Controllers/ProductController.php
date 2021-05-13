@@ -24,7 +24,7 @@ class ProductController extends Controller
    * @return Product[] $products
    */
   public function getAllProducts() {
-    $products = DB::table('product')->get();
+    $products = DB::table('product')->where('hidden', false)->get();
     foreach ($products as $product) {
       $user = User::where('id', $product->dealer)->first();
       $product->dealer = $user;
@@ -96,6 +96,7 @@ class ProductController extends Controller
         'preview' => $request->input('preview'),
         'preview2' => $request->input('preview2'),
         'preview3' => $request->input('preview3'),
+        'hidden' => false
       ]);
       return response()->json(['msg' => 'Created successfully'], 201);
     } catch (Exception $exception) {
@@ -123,7 +124,7 @@ class ProductController extends Controller
     }
     // Try to delete product
     try {
-      Product::where('id', $id)->delete();
+      DB::table('product')->where('id', $id)->update(['hidden' => true]);
       return response()->json(['msg' => 'Deleted successfully'], 201);
     } catch (Exception $exception) {
       return response()->json(['error' => 'Could not delete product'], 500);

@@ -28,7 +28,8 @@ class ProductTableSeeder extends Seeder
             'serialNumber' => '155443345534',
             'preview' => 'prev1',
             'preview2' => 'prev2',
-            'preview3' => 'prev3'
+            'preview3' => 'prev3',
+            'hidden' => false
         ]);
 
         DB::table('product')->insert([
@@ -44,7 +45,8 @@ class ProductTableSeeder extends Seeder
             'serialNumber' => '155443345534',
             'preview' => 'prev1',
             'preview2' => 'prev2',
-            'preview3' => 'prev3'
+            'preview3' => 'prev3',
+            'hidden' => false
         ]);
 
         DB::table('product')->insert([
@@ -61,7 +63,8 @@ class ProductTableSeeder extends Seeder
             'serialNumber' => '155443345534',
             'preview' => 'prev1',
             'preview2' => 'prev2',
-            'preview3' => 'prev3'
+            'preview3' => 'prev3',
+            'hidden' => false
         ]);
 
         DB::table('product')->insert([
@@ -77,7 +80,8 @@ class ProductTableSeeder extends Seeder
             'serialNumber' => '155443345534',
             'preview' => 'prev1',
             'preview2' => 'prev2',
-            'preview3' => 'prev3'
+            'preview3' => 'prev3',
+            'hidden' => false
         ]);
     }
 }

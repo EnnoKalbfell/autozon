@@ -126,7 +126,7 @@ class UserController extends Controller
         return response()->json(['error' => 'Unauthorized'], 401);
       }
       // Search all products of authenticated user
-      $products = Product::where('dealer', $user->id)->get();
+      $products = Product::where([['dealer', $user->id], ['hidden', false]])->get();
       foreach ($products as $product) {
         $user = User::where('id', $product->dealer)->first();
         $car = Car::where('id', $product->carId)->first();
