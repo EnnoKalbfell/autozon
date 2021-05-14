@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export default class ApiServiceMock {
+export default class ApiMockService {
 
   public get<T>(endPoint: string, options?: IRequestOptions, returnValue?: any): Observable<T> {
     return returnValue;

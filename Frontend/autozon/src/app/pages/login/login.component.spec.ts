@@ -1,11 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
 import { LoginService } from 'src/app/core/services/login/login.service';
-import { Router } from '@angular/router';
-import ApiService from 'src/app/core/services/api/api.service';
-import { RouterMock } from 'src/app/mocks/routerMock';
-import ApiServiceMock from 'src/app/mocks/apiServiceMock';
 import { FormBuilder } from '@angular/forms';
+import { LoginMockService } from 'src/app/mocks/loginMock.service';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -15,10 +12,8 @@ describe('LoginComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ LoginComponent ],
       providers: [
-        LoginService,
-        FormBuilder,
-        { provide: ApiService, useValue: ApiServiceMock },
-        { provide: Router, useValue: RouterMock }
+        { provide: LoginService, useValue: LoginMockService },
+        FormBuilder
       ]
     })
     .compileComponents();

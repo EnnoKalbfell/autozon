@@ -1,6 +1,6 @@
 import { NumberSymbol } from '@angular/common';
 
-export interface IUser{
+export interface IUser {
     id: number;
     lastName: string;
     firstName: string;
@@ -13,4 +13,4 @@ export interface IUser{
     country: string;
     role: string;
     verified: boolean;
-}
+};
