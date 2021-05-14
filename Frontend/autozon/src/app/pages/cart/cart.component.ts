@@ -73,21 +73,22 @@ export class CartComponent implements OnInit {
    * Order all products from cart
    */
   order(): void {
-    let productIds: number[] = [];
+    const productIds: number[] = [];
     // Build request param
     this.products.forEach((p: ICartModel) => {
       // Add productId once per amount
       for (let i = 0; i < p.amount; i++) {
-        productIds.push(p.id);        
+        productIds.push(p.id);
       }
     });
 
     // Place request
-    this.productService.placeOrder(productIds);
-
-    // Remove all products from sessionStorage
-    sessionStorage.removeItem('cart');
-    window.location.reload();
+    this.productService.placeOrder(productIds).subscribe(res => {
+      if (res !== undefined) {
+        // Remove all products from sessionStorage
+        sessionStorage.removeItem('cart');
+        window.location.reload();
+      }
+    });
   }
-
 }

@@ -29,6 +29,7 @@ class CreateProductTable extends Migration
             $table->string('preview', 150);
             $table->string('preview2', 150);
             $table->string('preview3', 150);
+            $table->boolean('hidden');
         });
     }
 
