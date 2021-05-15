@@ -6,6 +6,7 @@ import { ProductService } from 'src/app/core/services/product/product.service';
 import { customer } from 'src/app/mocks/dataMocks';
 import { LoginCustomerMockService } from 'src/app/mocks/loginCustomerMock';
 import { ProductCustomerMockService } from 'src/app/mocks/productCustomerMock';
+import { By } from '@angular/platform-browser';
 
 describe('MyProductOverviewComponent > Customer', () => {
   let component: MyProductOverviewComponent;
@@ -31,5 +32,8 @@ describe('MyProductOverviewComponent > Customer', () => {
   it('on initialization, values should be set correctly', () => {
     expect(component.products).toEqual([]);
     expect(component.user).toEqual(customer);
+    expect(fixture.debugElement.query(By.css('p')).nativeElement.textContent).toContain(
+      'Sie haben keine Rechte, eigene Produkte zu erstellen.'
+    );
   });
 });

@@ -1,24 +1,24 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProductOverviewComponent } from './product-overview.component';
 import { ProductService } from 'src/app/core/services/product/product.service';
-import { ProductMockService } from 'src/app/mocks/productMock.service';
-import { product } from 'src/app/mocks/dataMocks';
+import { ProductNoResultMockService } from 'src/app/mocks/productNoResultMock';
 import { of } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { By } from '@angular/platform-browser';
 
-describe('ProductOverviewComponent', () => {
+describe('ProductOverviewComponent > No data', () => {
   let component: ProductOverviewComponent;
   let fixture: ComponentFixture<ProductOverviewComponent>;
   const url = {
-    brand: 'Smart',
-    model: 'Smart'
+    brand: 'Rainbow',
+    model: 'Unicorn'
   };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ ProductOverviewComponent ],
       providers: [
-        { provide: ProductService, useClass: ProductMockService },
+        { provide: ProductService, useClass: ProductNoResultMockService },
         { provide: ActivatedRoute, useValue: { params: of(url) } }
       ]
     })
@@ -30,10 +30,13 @@ describe('ProductOverviewComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
-  describe('and parameters fit on product', () => {
-    it('values are set correctly', () => {
-      expect(component.products).toEqual([product]);
+  
+  describe('and parameters do not fit on product', () => {
+    it('no products are set', () => {
+      expect(component.products).toEqual([]);
+      expect(fixture.debugElement.query(By.css('p')).nativeElement.textContent).toContain(
+        'Es wurden keine passenden Produkte gefunden.'
+      );
     });
   });
 });
