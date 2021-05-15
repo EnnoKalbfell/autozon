@@ -18,7 +18,7 @@ describe('ProductOverviewComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ ProductOverviewComponent ],
       providers: [
-        { provide: ProductService, useValue: ProductIdMockService },
+        { provide: ProductService, useClass: ProductIdMockService },
         { provide: ActivatedRoute, useValue: { params: of(url) } }
       ]
     })

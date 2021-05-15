@@ -15,8 +15,8 @@ describe('MyProductOverviewComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ MyProductOverviewComponent ],
       providers: [
-        { provide: ProductService, useValue: ProductMockService },
-        { provide: LoginService, useValue: LoginMockService }
+        { provide: ProductService, useClass: ProductMockService },
+        { provide: LoginService, useClass: LoginMockService }
       ]
     })
     .compileComponents();

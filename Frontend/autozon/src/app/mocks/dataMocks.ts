@@ -82,3 +82,20 @@ export const singleCart: ICartModel = {
   preview: 'preview',
   car: car
 };
+
+export const singleCartAmountTwice: ICartModel = {
+  id: 1,
+  amount: 2,
+  name: 'Testproduct',
+  dealer: dealer,
+  manufacturer: 'Manufacturer',
+  price: 35.25,
+  streetLegality: true,
+  carId: 1,
+  shortDescription: 'This is a testproduct.',
+  description: 'The testproduct is amazing for everything.',
+  category: 'Allround',
+  serialNumber: '2134k4526ksd',
+  preview: 'preview',
+  car: car
+};

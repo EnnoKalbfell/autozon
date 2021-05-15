@@ -1,16 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProductDetailComponent } from './product-detail.component';
 import { LoginService } from 'src/app/core/services/login/login.service';
-import { LoginMockService } from 'src/app/mocks/loginMock.service';
 import { ProductMockService } from 'src/app/mocks/productMock.service';
 import { ProductService, ProductIdService } from 'src/app/core/services/product/product.service';
-import { product, dealer, customer, singleCart } from 'src/app/mocks/dataMocks';
-import { ICartModel } from 'src/app/core/models/cart.model';
+import { product, dealer, singleCart } from 'src/app/mocks/dataMocks';
 import { LoginDealerMockService } from 'src/app/mocks/loginDealerMock';
-import { LoginCustomerMockService } from 'src/app/mocks/loginCustomerMock';
-import { IUser } from 'src/app/core/models/user.model';
 
-describe('ProductDetailComponent > Visitor', () => {
+describe('ProductDetailComponent > Dealer', () => {
   let component: ProductDetailComponent;
   let fixture: ComponentFixture<ProductDetailComponent>;
 
@@ -18,7 +14,7 @@ describe('ProductDetailComponent > Visitor', () => {
     await TestBed.configureTestingModule({
       declarations: [ ProductDetailComponent ],
       providers: [
-        { provide: LoginService, useClass: LoginMockService },
+        { provide: LoginService, useClass: LoginDealerMockService },
         { provide: ProductService, useClass: ProductMockService },
         ProductIdService
       ]
@@ -33,24 +29,10 @@ describe('ProductDetailComponent > Visitor', () => {
     fixture.detectChanges();
   });
 
-  describe('and user is not logged in', async () => {
+  describe('and dealer is logged in', async () => {
     it('on initialization, values are set correctly', () => {
-      const user: IUser = {
-        id: 0,
-        lastName: '',
-        firstName: '',
-        companyName: '',
-        email: '',
-        phone: '',
-        streetAndHouseNumber: '',
-        zipCode: '',
-        city: '',
-        country: '',
-        role: '',
-        verified: false
-      };
       expect(component.product).toEqual(product);
-      expect(component.user).toEqual(user);
+      expect(component.user).toEqual(dealer);
       expect(component.showCartButton()).toEqual(false);
     });
 

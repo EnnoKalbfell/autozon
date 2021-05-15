@@ -7,29 +7,27 @@ import { Observable } from 'rxjs';
 })
 export default class ApiMockService {
 
-  public get<T>(endPoint: string, options?: IRequestOptions, returnValue?: any): Observable<T> {
-    return returnValue;
+  public get<T>(endPoint: string, options?: IRequestOptions): Observable<T> {
+    return endPoint as unknown as Observable<T>;
   }
 
   public post<T>(
     endPoint: string,
     params: object,
-    options?: IRequestOptions,
-    returnValue?: any
+    options?: IRequestOptions
   ): Observable<T> {
-    return returnValue;
+    return endPoint as unknown as Observable<T>;;
   }
 
   public put<T>(
     endPoint: string,
     params: object,
-    options?: IRequestOptions,
-    returnValue?: any
+    options?: IRequestOptions
   ): Observable<T> {
-    return returnValue;
+    return endPoint as unknown as Observable<T>;
   }
 
-  public delete<T>(endPoint: string, options?: IRequestOptions, returnValue?: any): Observable<T> {
-    return returnValue;
+  public delete<T>(endPoint: string, options?: IRequestOptions): Observable<T> {
+    return endPoint as unknown as Observable<T>;
   }
 }

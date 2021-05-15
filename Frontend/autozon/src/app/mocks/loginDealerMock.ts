@@ -1,11 +1,8 @@
-import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { IUser } from '../core/models/user.model';
+import { dealer } from './dataMocks';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class LoginMockService {
+export class LoginDealerMockService {
 
   constructor() { }
 
@@ -19,7 +16,7 @@ export class LoginMockService {
   }
 
   public getUser(): BehaviorSubject<IUser | undefined> {
-    const userSource$ = new BehaviorSubject<IUser | undefined>(undefined);
+    const userSource$ = new BehaviorSubject<IUser | undefined>(dealer);
     return userSource$;
   }
 

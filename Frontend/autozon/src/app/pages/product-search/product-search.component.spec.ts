@@ -13,7 +13,7 @@ describe('ProductSearchComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ ProductSearchComponent ],
       providers: [
-        { provide: ProductSearchService, useValue: ProductSearchMockService }
+        { provide: ProductSearchService, useClass: ProductSearchMockService }
       ]
     })
     .compileComponents();
