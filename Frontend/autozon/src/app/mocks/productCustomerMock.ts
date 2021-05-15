@@ -1,8 +1,6 @@
 import { BehaviorSubject } from 'rxjs';
 import { IProduct } from '../core/models/product.model'
 import { product } from './dataMocks';
-import { Injectable } from '@angular/core';
-import { StorageMock } from './storageMock';
 
 export class ProductCustomerMockService {
   public fetchProductData(): BehaviorSubject<IProduct[]> {
@@ -26,6 +24,6 @@ export class ProductCustomerMockService {
   public placeOrder(productIds: number[]): BehaviorSubject<JSON | undefined> {
     return new BehaviorSubject<JSON | undefined>(
       JSON.parse(JSON.stringify(productIds))
-    ); 
+    );
   }
 }

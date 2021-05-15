@@ -63,6 +63,8 @@ export const product: IProduct = {
   category: 'Allround',
   serialNumber: '2134k4526ksd',
   preview: 'preview',
+  preview2: 'preview2',
+  preview3: 'preview3',
   car: car
 };
 
@@ -80,6 +82,8 @@ export const singleCart: ICartModel = {
   category: 'Allround',
   serialNumber: '2134k4526ksd',
   preview: 'preview',
+  preview2: 'preview2',
+  preview3: 'preview3',
   car: car
 };
 
@@ -97,5 +101,7 @@ export const singleCartAmountTwice: ICartModel = {
   category: 'Allround',
   serialNumber: '2134k4526ksd',
   preview: 'preview',
+  preview2: 'preview2',
+  preview3: 'preview3',
   car: car
 };

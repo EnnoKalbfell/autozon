@@ -4,33 +4,19 @@ import { CartComponent } from './cart.component';
 import { ProductService } from 'src/app/core/services/product/product.service';
 import { LoginService } from 'src/app/core/services/login/login.service';
 import { ProductMockService } from 'src/app/mocks/productMock.service';
-import { LoginMockService } from 'src/app/mocks/loginMock.service';
+import { customer } from 'src/app/mocks/dataMocks';
+import { LoginCustomerMockService } from 'src/app/mocks/loginCustomerMock';
 import { By } from '@angular/platform-browser';
-import { IUser } from 'src/app/core/models/user.model';
 
-describe('CartComponent', () => {
+describe('CartComponent > Customer', () => {
   let component: CartComponent;
   let fixture: ComponentFixture<CartComponent>;
-  const user: IUser = {
-    id: 0,
-    lastName: '',
-    firstName: '',
-    companyName: '',
-    email: '',
-    phone: '',
-    streetAndHouseNumber: '',
-    zipCode: '',
-    city: '',
-    country: '',
-    role: '',
-    verified: false
-  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ CartComponent ],
       providers: [
-        { provide: LoginService, useClass: LoginMockService },
+        { provide: LoginService, useClass: LoginCustomerMockService },
         { provide: ProductService, useClass: ProductMockService }
       ]
     })
@@ -47,9 +33,9 @@ describe('CartComponent', () => {
   describe('and there are no products in session storage', () => {
     it('on initialization, no products are set', () => {
       expect(component.products).toEqual([]);
-      expect(component.user).toEqual(user);
+      expect(component.user).toEqual(customer);
       expect(fixture.debugElement.query(By.css('p')).nativeElement.textContent).toContain(
-        'Sie haben keine Rechte, Produkte zu bestellen.'
+        'Sie haben Ihrem Warenkorb noch keine Produkte hinzugefügt.'
       );
     });
   });
