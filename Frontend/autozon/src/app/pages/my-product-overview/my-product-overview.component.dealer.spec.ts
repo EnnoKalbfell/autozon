@@ -3,11 +3,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MyProductOverviewComponent } from './my-product-overview.component';
 import { LoginService } from 'src/app/core/services/login/login.service';
 import { ProductService } from 'src/app/core/services/product/product.service';
-import { ProductMockService } from 'src/app/mocks/productMock.service';
-import { LoginMockService } from 'src/app/mocks/loginMock.service';
-import { IUser } from 'src/app/core/models/user.model';
+import { product, dealer } from 'src/app/mocks/dataMocks';
+import { LoginDealerMockService } from 'src/app/mocks/loginDealerMock';
+import { ProductDealerMockService } from 'src/app/mocks/productDealerMock';
 
-describe('MyProductOverviewComponent > Visitor', () => {
+describe('MyProductOverviewComponent > Dealer', () => {
   let component: MyProductOverviewComponent;
   let fixture: ComponentFixture<MyProductOverviewComponent>;
 
@@ -15,8 +15,8 @@ describe('MyProductOverviewComponent > Visitor', () => {
     await TestBed.configureTestingModule({
       declarations: [ MyProductOverviewComponent ],
       providers: [
-        { provide: ProductService, useClass: ProductMockService },
-        { provide: LoginService, useClass: LoginMockService }
+        { provide: ProductService, useClass: ProductDealerMockService },
+        { provide: LoginService, useClass: LoginDealerMockService }
       ]
     })
     .compileComponents();
@@ -29,22 +29,7 @@ describe('MyProductOverviewComponent > Visitor', () => {
   });
 
   it('on initialization, values should be set correctly', () => {
-    const user: IUser = {
-      id: 0,
-      lastName: '',
-      firstName: '',
-      companyName: '',
-      email: '',
-      phone: '',
-      streetAndHouseNumber: '',
-      zipCode: '',
-      city: '',
-      country: '',
-      role: '',
-      verified: false
-    };
-
-    expect(component.products).toEqual([]);
-    expect(component.user).toEqual(user);
+    expect(component.products).toEqual([product]);
+    expect(component.user).toEqual(dealer);
   });
 });
