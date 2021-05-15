@@ -3,7 +3,7 @@
     <div>
         <mat-form-field appearance="fill">
             <mat-label>Brand</mat-label>
-            <mat-select placeholder="" #clientValue (selectionChange)="getModelsFromBrand($event.value)">
+            <mat-select id="brandSelect" placeholder="" #clientValue (selectionChange)="getModelsFromBrand($event.value)">
                 <mat-option *ngFor="let car of cars; let i = index" value={{car.carBrand}}>{{ car.carBrand }}
                 </mat-option>
             </mat-select>
@@ -12,7 +12,7 @@
     <div>
         <mat-form-field appearance="fill">
             <mat-label>Model</mat-label>
-            <mat-select placeholder="" #clientValue (selectionChange)="filterForResult($event.value)">
+            <mat-select id="modelSelect" placeholder="" #clientValue (selectionChange)="filterForResult($event.value)">
                 <mat-option *ngFor="let model of carModels; let i = index" value={{model.carModel}}>{{ model.carModel }}
                 </mat-option>
             </mat-select>
