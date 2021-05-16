@@ -2,15 +2,14 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NavigationUserComponent } from './navigation-user.component';
 import { LoginService } from 'src/app/core/services/login/login.service';
-import { LoginMockService } from 'src/app/mocks/loginMock.service';
-import { IUser } from 'src/app/core/models/user.model';
 import { dealer } from 'src/app/mocks/dataMocks';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { RouterMock } from 'src/app/mocks/routerMock';
+import { LoginDealerMockService } from 'src/app/mocks/loginDealerMock';
 import { By } from '@angular/platform-browser';
 
-describe('NavigationUserComponent', () => {
+describe('NavigationUserComponent > Dealer', () => {
   let component: NavigationUserComponent;
   let fixture: ComponentFixture<NavigationUserComponent>;
 
@@ -18,7 +17,7 @@ describe('NavigationUserComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ NavigationUserComponent ],
       providers: [
-        { provide: LoginService, useClass: LoginMockService },
+        { provide: LoginService, useClass: LoginDealerMockService },
         { provide: Router, useClass: RouterMock },
         HttpClient,
         HttpHandler
@@ -33,28 +32,15 @@ describe('NavigationUserComponent', () => {
     fixture.detectChanges();
   });
 
-  describe('and user is not logged in', () => {
-    it('should display visitor profile', () => {
-      const user: IUser = {
-        id: 0,
-        lastName: '',
-        firstName: '',
-        companyName: '',
-        email: '',
-        phone: '',
-        streetAndHouseNumber: '',
-        zipCode: '',
-        city: '',
-        country: '',
-        role: '',
-        verified: false
-      };
-
-      expect(component.user).toEqual(user);
+  describe('and dealer is logged in', () => {
+    it('should display dealer profile', () => {
+      expect(component.user).toEqual(dealer);
       expect(fixture.debugElement.query(By.css('h3')).nativeElement.textContent).toContain(
-        'Besucher'
+        `${dealer.firstName} ${dealer.lastName}`
       );
-      expect(fixture.debugElement.query(By.css('p'))).toBeNull();
+      expect(fixture.debugElement.query(By.css('p')).nativeElement.textContent).toContain(
+        dealer.email
+      );
     });
   });
 });

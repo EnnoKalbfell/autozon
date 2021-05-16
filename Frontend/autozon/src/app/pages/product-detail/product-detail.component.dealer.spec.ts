@@ -3,7 +3,7 @@ import { ProductDetailComponent } from './product-detail.component';
 import { LoginService } from 'src/app/core/services/login/login.service';
 import { ProductMockService } from 'src/app/mocks/productMock.service';
 import { ProductService, ProductIdService } from 'src/app/core/services/product/product.service';
-import { product, dealer, singleCart } from 'src/app/mocks/dataMocks';
+import { product, dealer } from 'src/app/mocks/dataMocks';
 import { LoginDealerMockService } from 'src/app/mocks/loginDealerMock';
 
 describe('ProductDetailComponent > Dealer', () => {

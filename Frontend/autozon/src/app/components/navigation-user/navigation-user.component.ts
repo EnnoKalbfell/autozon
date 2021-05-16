@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { INav } from 'src/app/core/models/nav.model';
 import { LoginService } from 'src/app/core/services/login/login.service';
 import { IUser } from 'src/app/core/models/user.model';
 
 @Component({
   selector: 'app-navigation-user',
   templateUrl: './navigation-user.component.html',
-  styleUrls: ['./navigation-user.component.scss'],
-  providers: [LoginService]
+  styleUrls: ['./navigation-user.component.scss']
 })
 export class NavigationUserComponent implements OnInit {
   user: IUser = {
