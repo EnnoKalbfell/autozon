@@ -34,6 +34,21 @@ export const customer: IUser = {
   verified: true
 };
 
+export const visitor: IUser = {
+  id: 0,
+  lastName: '',
+  firstName: '',
+  companyName: '',
+  email: '',
+  phone: '',
+  streetAndHouseNumber: '',
+  zipCode: '',
+  city: '',
+  country: '',
+  role: '',
+  verified: false
+};
+
 export const carModel: ICarModel = {
   id: 1,
   carModel: 'Smart',
