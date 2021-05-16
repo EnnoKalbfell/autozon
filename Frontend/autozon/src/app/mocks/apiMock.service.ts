@@ -1,6 +1,7 @@
 import { IRequestOptions } from '../core/services/api/api.service';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { product, customer } from './dataMocks';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +9,13 @@ import { Observable } from 'rxjs';
 export default class ApiMockService {
 
   public get<T>(endPoint: string, options?: IRequestOptions): Observable<T> {
-    return endPoint as unknown as Observable<T>;
+    if (endPoint === 'product' || endPoint === 'user/products'){
+      return of([product]) as unknown as Observable<T>;
+    }
+    if (endPoint === 'product/1') {
+      return of(product) as unknown as Observable<T>;
+    }
+    return of(undefined) as unknown as Observable<T>;
   }
 
   public post<T>(
@@ -16,7 +23,13 @@ export default class ApiMockService {
     params: object,
     options?: IRequestOptions
   ): Observable<T> {
-    return endPoint as unknown as Observable<T>;
+    if (endPoint === 'order' || endPoint === 'auth/signout') {
+      return of({success: 'successfull'}) as unknown as Observable<T>;
+    }
+    if (endPoint === 'auth/authenticatedUser') {
+      return of(customer) as unknown as Observable<T>;
+    }
+    return of(undefined) as unknown as Observable<T>;
   }
 
   public put<T>(
@@ -24,6 +37,9 @@ export default class ApiMockService {
     params: object,
     options?: IRequestOptions
   ): Observable<T> {
+    if (endPoint === 'product/1/delete') {
+      return of({success: 'successfull'}) as unknown as Observable<T>;
+    }
     return endPoint as unknown as Observable<T>;
   }
 
