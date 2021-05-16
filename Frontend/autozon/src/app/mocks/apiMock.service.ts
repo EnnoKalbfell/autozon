@@ -16,7 +16,7 @@ export default class ApiMockService {
     params: object,
     options?: IRequestOptions
   ): Observable<T> {
-    return endPoint as unknown as Observable<T>;;
+    return endPoint as unknown as Observable<T>;
   }
 
   public put<T>(
