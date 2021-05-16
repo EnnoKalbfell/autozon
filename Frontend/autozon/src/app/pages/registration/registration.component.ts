@@ -23,7 +23,7 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
-      role: ['', Validators.required],
+      role: ['costumer', Validators.required],
       firstname: ['', [Validators.required, Validators.maxLength(100)]],
       lastname: ['', [Validators.required, Validators.maxLength(100)]],
       company: ['', [Validators.maxLength(150)]],
@@ -44,16 +44,18 @@ export class RegistrationComponent implements OnInit {
     return this.registerForm.controls;
   }
 
-  onSubmit(): void {
+  onSubmit() {
     this.submitted = true;
-    if (this.registerForm?.invalid) {
+
+    // stop here if form is invalid
+    if (this.registerForm.invalid) {
       return;
     }
 
-    // Can't be used directly for some unknown reason
-    var temp = this.registerForm.get('role').value;
-console.log(temp);
+    // display form values on success
+    // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
 
+    var temp = this.registerForm.get('role').value;
     if (temp === 'customer') {
       this.loginService.registerCustomer(
         this.registerForm.get('lastname').value,
@@ -79,10 +81,8 @@ console.log(temp);
           this.registerForm.get('postalCode').value,
           this.registerForm.get('town').value
         );
-        window.location.replace('http://localhost:4200/login');
-      } else {
-        return;
       }
+      window.location.replace('http://localhost:4200/login');
     }
   }
 }
