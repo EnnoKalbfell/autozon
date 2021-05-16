@@ -42,11 +42,11 @@ export class RegistrationComponent implements OnInit {
     });
   }
 
-  get f() {
+  get f(): void {
     return this.registerForm.controls;
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.submitted = true;
 
     // stop here if form is invalid
@@ -54,10 +54,8 @@ export class RegistrationComponent implements OnInit {
       return;
     }
 
-    // display form values on success
-    // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
-
-    var temp = this.registerForm.controls.role.value;
+    // must be saved temporary otherwise an error appears
+    const temp = this.registerForm.controls.role.value;
     if (temp !== 'dealer') {
       this.loginService.registerCustomer(
         this.registerForm.controls.lastname.value,

@@ -83,7 +83,7 @@ export class LoginService {
     city: string,
     country: string
   ): BehaviorSubject<string | undefined> {
-    let response$ = new BehaviorSubject<string | undefined>(undefined);
+    const response$ = new BehaviorSubject<string | undefined>(undefined);
     this.apiService.post('auth/signup/customer',
     {
       lastName: lastname,
@@ -118,8 +118,8 @@ export class LoginService {
     city: string,
     country: string
   ): BehaviorSubject<string | undefined> {
-    let response$ = new BehaviorSubject<string | undefined>(undefined);
-    this.apiService.post('http://localhost:3000/auth/signup/dealer',
+    const response$ = new BehaviorSubject<string | undefined>(undefined);
+    this.apiService.post('auth/signup/dealer',
     {
       companyName: companyname,
       lastName: lastname,
@@ -129,7 +129,8 @@ export class LoginService {
       phone,
       streetAndHouseNumber,
       zipCode,
-      city
+      city,
+      country
     }).subscribe((res: any) => {
       if (res) {
         response$.next('successfull');
