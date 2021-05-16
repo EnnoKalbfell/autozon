@@ -1,7 +1,7 @@
 import { IRequestOptions } from '../core/services/api/api.service';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { product, customer } from './dataMocks';
+import { product, customer, car, carModel } from './dataMocks';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +14,12 @@ export default class ApiMockService {
     }
     if (endPoint === 'product/1') {
       return of(product) as unknown as Observable<T>;
+    }
+    if (endPoint === 'car') {
+      return of([car]) as unknown as Observable<T>;
+    }
+    if (endPoint === 'car/model') {
+      return of([carModel]) as unknown as Observable<T>;
     }
     return of(undefined) as unknown as Observable<T>;
   }
