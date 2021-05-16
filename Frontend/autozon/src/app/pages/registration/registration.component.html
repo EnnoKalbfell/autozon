@@ -36,13 +36,6 @@
 
         <div>
             <mat-form-field class="example-full-width">
-                <mat-label class="label">Geburtsdatum</mat-label>
-                <input formControlName="birthday" type="date" [ngClass]="{ 'is-invalid': submitted && f.birthday.errors }" matInput>
-            </mat-form-field>
-        </div>
-
-        <div>
-            <mat-form-field class="example-full-width">
                 <mat-label class="label">Strasse und Hausnummer</mat-label>
                 <input formControlName="street" [ngClass]="{ 'is-invalid': submitted && f.street.errors }" matInput>
             </mat-form-field>
@@ -64,6 +57,13 @@
 
         <div>
             <mat-form-field class="example-full-width">
+                <mat-label class="label">Country</mat-label>
+                <input formControlName="country" [ngClass]="{ 'is-invalid': submitted && f.country.errors }" matInput>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field class="example-full-width">
                 <mat-label class="label">Telefonnummer</mat-label>
                 <input formControlName="phone" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" matInput>
             </mat-form-field>
@@ -79,13 +79,13 @@
         <div>
             <mat-form-field class="example-full-width">
                 <mat-label class="label">Passwort</mat-label>
-                <input formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" matInput class="password">
+                <input formControlName="password" type="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" matInput class="password">
 
             </mat-form-field>
         </div>
 
         <div>
-            <button mat-raised-button class="button" color="primary">Konto erstellen</button>
+            <button mat-raised-button type="submit" class="button" color="primary">Konto erstellen</button>
         </div>
     </form>
     <div class="link input_placeholder">

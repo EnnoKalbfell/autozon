@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { LoginService } from 'src/app/core/services/login/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -18,7 +19,8 @@ export class RegistrationComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -27,10 +29,10 @@ export class RegistrationComponent implements OnInit {
       firstname: ['', [Validators.required, Validators.maxLength(100)]],
       lastname: ['', [Validators.required, Validators.maxLength(100)]],
       company: ['', [Validators.maxLength(150)]],
-      birthday: ['', Validators.required],
       street: ['', [Validators.required, Validators.maxLength(100)]],
       postalCode: ['', [Validators.required, Validators.maxLength(10)]],
       town: ['', [Validators.required, Validators.maxLength(100)]],
+      country: ['', [Validators.required, Validators.maxLength(100)]],
       phone: ['', [Validators.required, Validators.maxLength(20)]],
       email: [
         '',
@@ -55,34 +57,42 @@ export class RegistrationComponent implements OnInit {
     // display form values on success
     // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
 
-    var temp = this.registerForm.get('role').value;
-    if (temp === 'customer') {
+    var temp = this.registerForm.controls.role.value;
+    if (temp !== 'dealer') {
       this.loginService.registerCustomer(
-        this.registerForm.get('lastname').value,
-        this.registerForm.get('firstname').value,
-        this.registerForm.get('email').value,
-        this.registerForm.get('password').value,
-        this.registerForm.get('phone').value,
-        this.registerForm.get('street').value,
-        this.registerForm.get('postalCode').value,
-        this.registerForm.get('town').value
-      );
-      window.location.replace('http://localhost:4200/login');
+        this.registerForm.controls.lastname.value,
+        this.registerForm.controls.firstname.value,
+        this.registerForm.controls.email.value,
+        this.registerForm.controls.password.value,
+        this.registerForm.controls.phone.value,
+        this.registerForm.controls.street.value,
+        this.registerForm.controls.postalCode.value,
+        this.registerForm.controls.town.value,
+        this.registerForm.controls.country.value
+      ).subscribe(res => {
+        if (res) {
+          this.router.navigate(['/login']);
+        }
+      });
     } else {
-      if (this.registerForm.get('company').value !== '') {
+      if (this.registerForm.controls.company.value !== '') {
         this.loginService.registerDealer(
-          this.registerForm.get('company').value,
-          this.registerForm.get('lastname').value,
-          this.registerForm.get('firstname').value,
-          this.registerForm.get('email').value,
-          this.registerForm.get('password').value,
-          this.registerForm.get('phone').value,
-          this.registerForm.get('street').value,
-          this.registerForm.get('postalCode').value,
-          this.registerForm.get('town').value
-        );
+          this.registerForm.controls.company.value,
+          this.registerForm.controls.lastname.value,
+          this.registerForm.controls.firstname.value,
+          this.registerForm.controls.email.value,
+          this.registerForm.controls.password.value,
+          this.registerForm.controls.phone.value,
+          this.registerForm.controls.street.value,
+          this.registerForm.controls.postalCode.value,
+          this.registerForm.controls.town.value,
+          this.registerForm.controls.country.value
+        ).subscribe(res => {
+          if (res) {
+            this.router.navigate(['/login']);
+          }
+        });
       }
-      window.location.replace('http://localhost:4200/login');
     }
   }
 }
