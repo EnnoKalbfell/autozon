@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { LoginService } from 'src/app/core/services/login/login.service';
 
 @Component({
   selector: 'app-registration',
@@ -7,40 +13,76 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./registration.component.scss'],
 })
 export class RegistrationComponent implements OnInit {
-
   registerForm: FormGroup | any;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder) {
-    
-  }
+  constructor(
+    private formBuilder: FormBuilder,
+    private loginService: LoginService
+  ) {}
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
-      role: [],
-      firstname: ['', Validators.required],
-      lastname: ['', Validators.required],
-      company: [''],
+      role: ['', Validators.required],
+      firstname: ['', [Validators.required, Validators.maxLength(100)]],
+      lastname: ['', [Validators.required, Validators.maxLength(100)]],
+      company: ['', [Validators.maxLength(150)]],
       birthday: ['', Validators.required],
-      street: ['', Validators.required],
-      postalCode: ['', Validators.required],
-      town: ['', Validators.required],
-      phone: ['', Validators.required],
-      email: ['', Validators.required],
-      password: ['', Validators.required] 
-    });}
+      street: ['', [Validators.required, Validators.maxLength(100)]],
+      postalCode: ['', [Validators.required, Validators.maxLength(10)]],
+      town: ['', [Validators.required, Validators.maxLength(100)]],
+      phone: ['', [Validators.required, Validators.maxLength(20)]],
+      email: [
+        '',
+        [Validators.required, Validators.email, Validators.maxLength(255)],
+      ],
+      password: ['', Validators.required],
+    });
+  }
 
-    get f() { return this.registerForm.controls; }
+  get f() {
+    return this.registerForm.controls;
+  }
 
-    onSubmit(): void {
+  onSubmit(): void {
     this.submitted = true;
+    if (this.registerForm?.invalid) {
+      return;
+    }
 
-        // stop here if form is invalid
-        if (this.registerForm?.invalid) {
-            return;
-        }
+    // Can't be used directly for some unknown reason
+    var temp = this.registerForm.get('role').value;
+console.log(temp);
 
-        // display form values on success
-        alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm?.value, null, 4));
+    if (temp === 'customer') {
+      this.loginService.registerCustomer(
+        this.registerForm.get('lastname').value,
+        this.registerForm.get('firstname').value,
+        this.registerForm.get('email').value,
+        this.registerForm.get('password').value,
+        this.registerForm.get('phone').value,
+        this.registerForm.get('street').value,
+        this.registerForm.get('postalCode').value,
+        this.registerForm.get('town').value
+      );
+      window.location.replace('http://localhost:4200/login');
+    } else {
+      if (this.registerForm.get('company').value !== '') {
+        this.loginService.registerDealer(
+          this.registerForm.get('company').value,
+          this.registerForm.get('lastname').value,
+          this.registerForm.get('firstname').value,
+          this.registerForm.get('email').value,
+          this.registerForm.get('password').value,
+          this.registerForm.get('phone').value,
+          this.registerForm.get('street').value,
+          this.registerForm.get('postalCode').value,
+          this.registerForm.get('town').value
+        );
+        window.location.replace('http://localhost:4200/login');
+      } else {
+        return;
+      }
+    }
   }
 }
