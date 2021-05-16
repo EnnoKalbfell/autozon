@@ -30,7 +30,7 @@ describe('ProductOverviewComponent > No data', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-  
+
   describe('and parameters do not fit on product', () => {
     it('no products are set', () => {
       expect(component.products).toEqual([]);

@@ -1,5 +1,5 @@
 import { BehaviorSubject } from 'rxjs';
-import { IProduct } from '../core/models/product.model'
+import { IProduct } from '../core/models/product.model';
 import { product } from './dataMocks';
 
 export class ProductNoResultMockService {

@@ -41,7 +41,7 @@ describe('ProductSearchComponent', () => {
       select.value = car.carBrand;
       select.dispatchEvent(new Event('change'));
       fixture.detectChanges();
-      
+
       expect(component.brand).toEqual(car.carBrand);
     });
 
@@ -59,6 +59,6 @@ describe('ProductSearchComponent', () => {
 
         });
       });
-    })
+    });
   });
 });

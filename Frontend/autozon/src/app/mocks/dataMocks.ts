@@ -62,13 +62,13 @@ export const car: ICar = {
   id: 1,
   carBrand: 'Smart',
   carModelId: 1,
-  carModel: carModel
+  carModel
 };
 
 export const product: IProduct = {
   id: 1,
   name: 'Testproduct',
-  dealer: dealer,
+  dealer,
   manufacturer: 'Manufacturer',
   price: 35.25,
   streetLegality: true,
@@ -80,14 +80,14 @@ export const product: IProduct = {
   preview: 'preview',
   preview2: 'preview2',
   preview3: 'preview3',
-  car: car
+  car
 };
 
 export const singleCart: ICartModel = {
   id: 1,
   amount: 1,
   name: 'Testproduct',
-  dealer: dealer,
+  dealer,
   manufacturer: 'Manufacturer',
   price: 35.25,
   streetLegality: true,
@@ -99,14 +99,14 @@ export const singleCart: ICartModel = {
   preview: 'preview',
   preview2: 'preview2',
   preview3: 'preview3',
-  car: car
+  car
 };
 
 export const singleCartAmountTwice: ICartModel = {
   id: 1,
   amount: 2,
   name: 'Testproduct',
-  dealer: dealer,
+  dealer,
   manufacturer: 'Manufacturer',
   price: 35.25,
   streetLegality: true,
@@ -118,5 +118,5 @@ export const singleCartAmountTwice: ICartModel = {
   preview: 'preview',
   preview2: 'preview2',
   preview3: 'preview3',
-  car: car
+  car
 };

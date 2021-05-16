@@ -8,12 +8,12 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  constructor(private loginService: LoginService,private fb: FormBuilder) {}
+  constructor(private loginService: LoginService, private fb: FormBuilder) {}
 
   loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required]
-  })
+  });
 
   ngOnInit(): void {}
 

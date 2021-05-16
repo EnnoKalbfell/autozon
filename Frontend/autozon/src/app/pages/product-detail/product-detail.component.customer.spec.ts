@@ -29,7 +29,7 @@ describe('ProductDetailComponent > Customer', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-  
+
   describe('and customer is logged in', () => {
     it('on initialization, values are set correctly', () => {
       expect(component.product).toEqual(product);
@@ -51,14 +51,14 @@ describe('ProductDetailComponent > Customer', () => {
 
       describe('and cart button was clicked twice', () => {
         it('amount of product in cart gets increased', () => {
-          const cart:ICartModel = {
+          const cart: ICartModel = {
             id: 1,
             amount: 2
           };
-  
+
           component.addToCart();
           component.addToCart();
-  
+
           expect(sessionStorage.getItem('cart')).toEqual(JSON.stringify([cart]));
         });
       });

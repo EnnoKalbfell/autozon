@@ -1,19 +1,19 @@
 export class StorageMock {
-  public storage: any = {}
+  public storage: any = {};
 
-  public setItem(key: string, value: string) {
+  public setItem(key: string, value: string): void {
     this.storage[key] = value || '';
   }
-  public getItem(key: string) {
+  public getItem(key: string): string | null {
     return key in this.storage ? this.storage[key] : null;
   }
-  public removeItem(key: string) {
+  public removeItem(key: string): void {
     delete this.storage[key];
   }
-  public length() {
+  public length(): number {
     return Object.keys(this.storage).length;
   }
-  public key(i: number) {
+  public key(i: number): string | null {
     const keys = Object.keys(this.storage);
     return keys[i] || null;
   }

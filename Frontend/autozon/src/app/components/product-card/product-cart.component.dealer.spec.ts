@@ -70,7 +70,7 @@ describe('ProductCardComponent > Visitor', () => {
 
         expect(component.user).toEqual(dealer);
         expect(component.route).toEqual('/my-products');
-        expect(fixture.debugElement.query(By.css('.deleteButton'))).toBeTruthy()
+        expect(fixture.debugElement.query(By.css('.deleteButton'))).toBeTruthy();
         expect(fixture.debugElement.query(By.css('.cartButton'))).toBeNull();
         expect(fixture.debugElement.query(By.css('#detailsButton'))).toBeTruthy();
       });

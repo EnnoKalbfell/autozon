@@ -74,7 +74,7 @@ describe('ProductCardComponent > Customer', () => {
 
         expect(component.user).toEqual(customer);
         expect(component.route).toEqual('/my-products');
-        expect(fixture.debugElement.query(By.css('.deleteButton'))).toBeNull()
+        expect(fixture.debugElement.query(By.css('.deleteButton'))).toBeNull();
         expect(fixture.debugElement.query(By.css('.cartButton'))).toBeNull();
         expect(fixture.debugElement.query(By.css('#detailsButton'))).toBeTruthy();
       });
@@ -111,7 +111,7 @@ describe('ProductCardComponent > Customer', () => {
 
           expect(sessionStorage.getItem('cart')).toEqual(JSON.stringify([singleCart]));
         });
-        
+
         describe('and remove button was clicked again', () => {
           it('should remove product from session storage', () => {
             fixture = TestBed.createComponent(ProductCardComponent);
@@ -121,9 +121,9 @@ describe('ProductCardComponent > Customer', () => {
             component.allProducts = [singleCart];
             component.route = '/cart';
             fixture.detectChanges();
-  
+
             component.removeProduct();
-  
+
             expect(sessionStorage.getItem('cart')).toEqual(JSON.stringify([]));
           });
         });

@@ -58,7 +58,7 @@ describe('ProductCardComponent > Dealer', () => {
           role: '',
           verified: false
         };
-  
+
         expect(component.user).toEqual(user);
         expect(component.route).toEqual('/products');
         expect(fixture.debugElement.query(By.css('.deleteButton'))).toBeNull();
@@ -99,7 +99,7 @@ describe('ProductCardComponent > Dealer', () => {
           role: '',
           verified: false
         };
-  
+
         expect(component.user).toEqual(user);
         expect(component.route).toEqual('/my-products');
         expect(fixture.debugElement.query(By.css('.deleteButton'))).toBeNull();
@@ -131,7 +131,7 @@ describe('ProductCardComponent > Dealer', () => {
           role: '',
           verified: false
         };
-  
+
         expect(component.user).toEqual(user);
         expect(component.route).toEqual('/cart');
         expect(fixture.debugElement.query(By.css('.deleteButton'))).toBeNull();
