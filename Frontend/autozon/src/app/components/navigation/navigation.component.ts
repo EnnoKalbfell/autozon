@@ -26,11 +26,6 @@ export class NavigationComponent implements OnInit {
       url: '/login',
       name: 'Anmelden',
       icon: 'login'
-    },
-    {
-      url: '/createNewProduct',
-      name: 'Neues Produkt Inserieren',
-      icon: 'add'
     }
   ];
 

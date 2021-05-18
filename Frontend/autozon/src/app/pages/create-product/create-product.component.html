@@ -1,38 +1,39 @@
 <div class="wrap-container">
-
-    <form [formGroup]="newProduct" class="create-form">
+    <h1>Neues Produkt erstellen</h1>
+    <form [formGroup]="newProduct" (ngSubmit)="onSubmit()" class="create-form">
+        <input type="hidden" formControlName="dealerCtrl">
         <mat-form-field class="create-form-full-width">
             <mat-label>Part Name</mat-label>
-            <input matInput formControlName="nameCtrl" placeholder="spoiler evo 5">
+            <input matInput formControlName="nameCtrl" [ngClass]="{ 'is-invalid': submitted && f.nameCtrl.errors }" placeholder="spoiler evo 5">
         </mat-form-field>
         <mat-form-field class="create-form-full-width">
             <mat-label>Manufacturer</mat-label>
-            <input matInput  formControlName="manufacturerCtrl" placeholder="varis">
+            <input matInput  formControlName="manufacturerCtrl" [ngClass]="{ 'is-invalid': submitted && f.manufacturerCtrl.errors }" placeholder="varis">
         </mat-form-field>
         <mat-form-field class="create-form-full-width">
             <mat-label>Price</mat-label>
-            <input matInput formControlName="priceCtrl" placeholder="599.50">
+            <input matInput formControlName="priceCtrl" [ngClass]="{ 'is-invalid': submitted && f.priceCtrl.errors }" placeholder="599.50">
         </mat-form-field>
             <section>
             <mat-checkbox formControlName="legalityCtrl" color="primary">Is the part streetlegal</mat-checkbox>
             </section>
         <mat-form-field class="create-form-full-width">
             <mat-label>Short description for part</mat-label>
-            <textarea matInput  formControlName="shortDescCtrl" #shortDescription></textarea>
+            <textarea matInput  formControlName="shortDescCtrl" [ngClass]="{ 'is-invalid': submitted && f.shortDescCtrl.errors }" #shortDescription></textarea>
             <mat-hint align="end">{{shortDescription.value.length}} / 200</mat-hint>
         </mat-form-field>
         <mat-form-field class="create-form-full-width">
             <mat-label>Full Description for part</mat-label>
-            <textarea matInput formControlName="descCtrl" #fullDescription></textarea>
+            <textarea matInput formControlName="descCtrl" [ngClass]="{ 'is-invalid': submitted && f.descCtrl.errors }" #fullDescription></textarea>
             <mat-hint align="end">{{fullDescription.value.length}} / 500</mat-hint>
         </mat-form-field>
         <mat-form-field class="create-form-full-width">
             <mat-label>Part Category</mat-label>
-            <input matInput formControlName="categoryCtrl" placeholder="Body">
+            <input matInput formControlName="categoryCtrl" [ngClass]="{ 'is-invalid': submitted && f.categoryCtrl.errors }" placeholder="Body">
         </mat-form-field>
         <mat-form-field class="create-form-full-width">
             <mat-label>Part serialnumber</mat-label>
-            <input matInput formControlName="serialCtrl">
+            <input matInput formControlName="serialCtrl" [ngClass]="{ 'is-invalid': submitted && f.serialCtrl.errors }">
         </mat-form-field>
         <mat-form-field class="create-form-full-width">
             <mat-label>Brand</mat-label>
@@ -43,6 +44,6 @@
                 </mat-option>
             </mat-select>
         </mat-form-field>
-        <button class="create-form-full-width" mat-raised-button color="primary" (click)="createProduct()">Create new Product</button>
+        <button class="create-form-full-width" mat-raised-button color="primary" type="submit">Create new Product</button>
     </form>
 </div>

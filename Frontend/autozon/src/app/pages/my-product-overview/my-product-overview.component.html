@@ -5,6 +5,7 @@
     color="primary"
     class="createButton"
     *ngIf="user !== undefined && user.role === 'dealer'"
+    (click)="navigateToCreateProduct()"
 >
     Angebot erstellen
 </button>

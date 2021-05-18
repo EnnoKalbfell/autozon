@@ -3,6 +3,7 @@ import { IProduct } from 'src/app/core/models/product.model';
 import { ProductService } from 'src/app/core/services/product/product.service';
 import { LoginService } from 'src/app/core/services/login/login.service';
 import { IUser } from 'src/app/core/models/user.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-product-overview',
@@ -26,7 +27,7 @@ export class MyProductOverviewComponent implements OnInit {
     verified: false
   };
 
-  constructor(private productService: ProductService, private loginService: LoginService) {
+  constructor(private productService: ProductService, private loginService: LoginService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -43,4 +44,7 @@ export class MyProductOverviewComponent implements OnInit {
     });
   }
 
+  navigateToCreateProduct(){
+    this.router.navigate(['/createNewProduct']);
+  }
 }

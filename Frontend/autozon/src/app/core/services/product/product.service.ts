@@ -37,7 +37,7 @@ export class ProductService {
     return productSource$;
   }
 
-  createNewProduct(newProduct: IProduct): any{
+  createNewProduct(newProduct: IProduct): BehaviorSubject<JSON | undefined>{
     const response$ = new BehaviorSubject<JSON | undefined>(undefined);
 
     const token: string = sessionStorage.getItem('token') || '';
@@ -45,7 +45,23 @@ export class ProductService {
       headers: new HttpHeaders({['Authorization']: `Bearer ${token}`})
     };
 
-    this.apiService.post('product/create', requestOptions).subscribe(res => {
+    const requestData = {
+      name: newProduct.name,
+      dealer: newProduct.dealer?.id,
+      manufacturer: newProduct.manufacturer,
+      price: newProduct.price,
+      streetLegality: newProduct.streetLegality,
+      shortDescription: newProduct.shortDescription,
+      description: newProduct.description,
+      category: newProduct.category,
+      serialNumber: newProduct.serialNumber,
+      preview: 'prev1',
+      preview2: 'prev2',
+      preview3: 'prev3',
+      carId: newProduct.car,
+    }
+
+    this.apiService.post('product/create', requestData, requestOptions).subscribe(res => {
       response$.next(JSON.parse(JSON.stringify(res)));
     });
     return response$;
