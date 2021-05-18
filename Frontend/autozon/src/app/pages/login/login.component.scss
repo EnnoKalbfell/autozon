@@ -13,6 +13,11 @@
     mat-form-field {
         width: 100%;
     }
+    // style of form when invalid inputs
+    .is-invalid{
+        background-color: #f85f6a;
+        opacity: 50%;
+    }
     
     .password {
         -webkit-text-security: disc;

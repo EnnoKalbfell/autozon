@@ -42,5 +42,4 @@ export class MyProductOverviewComponent implements OnInit {
       }
     });
   }
-
 }
