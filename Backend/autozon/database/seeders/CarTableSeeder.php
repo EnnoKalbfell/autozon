@@ -32,7 +32,7 @@ class CarTableSeeder extends Seeder
 
         DB::table('car')->insert([
             'carBrand' => 'Smart',
-            'carModelId' => 5
+            'carModelId' => 4
         ]);
 
         DB::table('car')->insert([
