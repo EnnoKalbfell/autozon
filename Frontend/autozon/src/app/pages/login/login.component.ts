@@ -8,6 +8,7 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  submitted = false;
   constructor(private loginService: LoginService, private fb: FormBuilder) {}
 
   loginForm = this.fb.group({
@@ -17,7 +18,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  get f(): any { return this.loginForm.controls; }
+
   login(): void {
+    this.submitted = true;
     if (!this.loginForm.valid) {
       return;
     }

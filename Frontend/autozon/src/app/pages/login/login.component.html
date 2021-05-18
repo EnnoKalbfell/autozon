@@ -1,7 +1,7 @@
 <div class="container">
     <div>
         <h2>Login</h2>
-        <p class="grey_colr">Hallo, schön Sie wieder zu sehen</p>
+        <p class="grey_colr">Hallo, schön Sie wieder zu sehen!</p>
     </div>
 
     <form [formGroup]="loginForm" (ngSubmit)="login()">
@@ -9,6 +9,7 @@
             <mat-form-field class="example-full-width">
                 <mat-label class="label">Email</mat-label>
                 <input
+                    [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
                     name="email"
                     formControlName="email"
                     required
@@ -21,6 +22,7 @@
             <mat-form-field class="example-full-width">
                 <mat-label class="label">Passwort</mat-label>
                 <input
+                    [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
                     name="password"
                     type="password"
                     formControlName="password"
