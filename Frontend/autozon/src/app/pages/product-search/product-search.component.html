@@ -2,7 +2,7 @@
     <h1>Suche</h1>
     <div>
         <mat-form-field appearance="fill">
-            <mat-label>Brand</mat-label>
+            <mat-label>Marke</mat-label>
             <mat-select id="brandSelect" placeholder="" #clientValue (selectionChange)="getModelsFromBrand($event.value)">
                 <mat-option *ngFor="let car of cars; let i = index" value={{car.carBrand}}>{{ car.carBrand }}
                 </mat-option>
@@ -11,12 +11,12 @@
     </div>
     <div>
         <mat-form-field appearance="fill">
-            <mat-label>Model</mat-label>
+            <mat-label>Modell</mat-label>
             <mat-select id="modelSelect" placeholder="" #clientValue (selectionChange)="filterForResult($event.value)">
                 <mat-option *ngFor="let model of carModels; let i = index" value={{model.carModel}}>{{ model.carModel }}
                 </mat-option>
             </mat-select>
         </mat-form-field>
     </div>
-    <button mat-raised-button color="primary" (click)="submitFormData()">Submit</button>
+    <button mat-raised-button color="primary" (click)="submitFormData()">Suche</button>
 </mat-card>
