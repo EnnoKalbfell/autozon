@@ -36,8 +36,8 @@ export class ProductService {
     return productSource$;
   }
 
-  createNewProduct(newProduct: IProduct): BehaviorSubject<JSON | undefined>{
-    const response$ = new BehaviorSubject<JSON | undefined>(undefined);
+  createNewProduct(newProduct: IProduct): BehaviorSubject<string | undefined>{
+    const response$ = new BehaviorSubject<string | undefined>(undefined);
 
     const token: string = sessionStorage.getItem('token') || '';
     const requestOptions: IRequestOptions = {
@@ -58,10 +58,12 @@ export class ProductService {
       preview2: 'prev2',
       preview3: 'prev3',
       carId: newProduct.car,
-    }
+    };
 
     this.apiService.post('product/create', requestData, requestOptions).subscribe(res => {
-      response$.next(JSON.parse(JSON.stringify(res)));
+      if (res) {
+        response$.next('successfull');
+      }
     });
     return response$;
   }

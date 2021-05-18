@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatCardImage } from '@angular/material/card';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ICar } from 'src/app/core/models/car.model';
-import { ICarModel } from 'src/app/core/models/carmodel.model';
 import { IProduct } from 'src/app/core/models/product.model';
 import { IUser } from 'src/app/core/models/user.model';
 import { CarService } from 'src/app/core/services/car/car.service';
@@ -46,7 +44,6 @@ export class CreateProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.carService.fetchCars().subscribe(res => {
       this.Cars = res;
     });
@@ -87,13 +84,12 @@ export class CreateProductComponent implements OnInit {
   }
 
   createProduct(): void{
-
     const productData: IProduct = {
       name: this.newProduct.get('nameCtrl')?.value,
       dealer: this.user,
       manufacturer: this.newProduct.get('manufacturerCtrl')?.value,
-      price: this.newProduct.get('priceCtrl')?.value,
-      streetLegality: this.newProduct.get('legalityCtrl')?.value,
+      price: Number(this.newProduct.get('priceCtrl')?.value),
+      streetLegality: Boolean(this.newProduct.get('legalityCtrl')?.value),
       shortDescription: this.newProduct.get('shortDescCtrl')?.value,
       description: this.newProduct.get('descCtrl')?.value,
       category: this.newProduct.get('categoryCtrl')?.value,
@@ -101,17 +97,12 @@ export class CreateProductComponent implements OnInit {
       preview: 'prev1',
       preview2: 'prev2',
       preview3: 'prev3',
-      car: this.carId,
-      // TODO: Add Dealer's token
+      car: this.carId
     };
 
-
     this.productService.createNewProduct(productData).subscribe((result: any) => {
-      console.log(result);
-      try {
+      if (result) {
         this.router.navigate(['/my-products']);
-      } catch (error) {
-        console.log(result);
       }
     });
   }
