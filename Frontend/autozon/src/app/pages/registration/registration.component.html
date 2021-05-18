@@ -3,88 +3,89 @@
         <h2>Konto erstellen</h2>
     </div>
 
-    <form>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <div class="mt_16">
-                <mat-radio-group aria-label="Select an option">
-                    <mat-radio-button checked class="radio_button" value="customer">Kunde</mat-radio-button>
-                    <br>
-                    <mat-radio-button class="radio_button mt_12" value="seller">Händler</mat-radio-button>
-                </mat-radio-group>  
+            <mat-radio-group formControlName="role" aria-label="Select an option">
+                <mat-radio-button class="radio_button" value="customer" [checked]="true">Kunde</mat-radio-button>
+                <br>
+                <mat-radio-button class="radio_button mt_12" value="dealer">Händler</mat-radio-button>
+            </mat-radio-group>
+
         </div>
 
         <div class="mt_16">
             <mat-form-field class="example-full-width">
                 <mat-label class="label">Vorname</mat-label>
-                <input required matInput>
+                <input formControlName="firstname" [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }" matInput>
             </mat-form-field>
         </div>
 
         <div>
             <mat-form-field class="example-full-width">
                 <mat-label class="label">Nachname</mat-label>
-                <input required matInput>
+                <input formControlName="lastname" [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }" matInput>
             </mat-form-field>
         </div>
 
         <div>
             <mat-form-field class="example-full-width">
                 <mat-label class="label">Firma</mat-label>
-                <input matInput>
-            </mat-form-field>
-        </div>
-
-        <div>
-            <mat-form-field class="example-full-width">
-                <mat-label class="label">Geburtsdatum</mat-label>
-                <input type="date" required matInput>
+                <input formControlName="company" [ngClass]="{ 'is-invalid': submitted && f.company.errors }" matInput>
             </mat-form-field>
         </div>
 
         <div>
             <mat-form-field class="example-full-width">
                 <mat-label class="label">Strasse und Hausnummer</mat-label>
-                <input required matInput>
+                <input formControlName="street" [ngClass]="{ 'is-invalid': submitted && f.street.errors }" matInput>
             </mat-form-field>
         </div>
 
         <div>
             <mat-form-field class="example-full-width">
                 <mat-label class="label">Postleizahl</mat-label>
-                <input required matInput>
+                <input formControlName="postalCode" [ngClass]="{ 'is-invalid': submitted && f.postalCode.errors }" matInput>
             </mat-form-field>
         </div>
 
         <div>
             <mat-form-field class="example-full-width">
                 <mat-label class="label">Ort</mat-label>
-                <input required matInput>
+                <input formControlName="town" [ngClass]="{ 'is-invalid': submitted && f.town.errors }" matInput>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <mat-form-field class="example-full-width">
+                <mat-label class="label">Land</mat-label>
+                <input formControlName="country" [ngClass]="{ 'is-invalid': submitted && f.country.errors }" matInput>
             </mat-form-field>
         </div>
 
         <div>
             <mat-form-field class="example-full-width">
                 <mat-label class="label">Telefonnummer</mat-label>
-                <input required matInput>
+                <input formControlName="phone" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" matInput>
             </mat-form-field>
         </div>
 
         <div>
             <mat-form-field class="example-full-width">
                 <mat-label class="label">Email</mat-label>
-                <input type="email" required matInput>
+                <input formControlName="email" type="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" matInput>
             </mat-form-field>
         </div>
 
         <div>
             <mat-form-field class="example-full-width">
                 <mat-label class="label">Passwort</mat-label>
-                <input required matInput class="password" >
+                <input formControlName="password" type="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" matInput class="password">
 
             </mat-form-field>
         </div>
 
         <div>
-            <button mat-raised-button class="button" color="primary">Konto erstellen</button>
+            <button mat-raised-button type="submit" class="button" color="primary">Konto erstellen</button>
         </div>
     </form>
     <div class="link input_placeholder">
