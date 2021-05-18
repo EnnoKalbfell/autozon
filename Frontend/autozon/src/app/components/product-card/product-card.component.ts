@@ -85,7 +85,7 @@ export class ProductCardComponent implements OnInit {
    */
   deleteProduct(): void {
     if (this.product.id && this.user !== undefined && this.user.role === 'dealer') {
-      this.productService.deleteMyProduct(this.product.id).subscribe((res: JSON) => {
+      this.productService.deleteMyProduct(this.product.id).subscribe((res: any) => {
         if (res !== undefined) {
           // Reload to not show deleted product anymore
           window.location.reload(); // TODO: Maybe solve reloading nicer

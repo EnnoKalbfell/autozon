@@ -43,7 +43,6 @@ export class MyProductOverviewComponent implements OnInit {
       }
     });
   }
-
   navigateToCreateProduct(){
     this.router.navigate(['/createNewProduct']);
   }

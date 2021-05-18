@@ -1,27 +1,41 @@
 <div class="container">
     <div>
         <h2>Login</h2>
-        <p class="grey_colr">Hallo, schön Sie wieder zu sehen</p>
+        <p class="grey_colr">Hallo, schön Sie wieder zu sehen!</p>
     </div>
 
-    <form>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
         <div class="mt_16">
             <mat-form-field class="example-full-width">
                 <mat-label class="label">Email</mat-label>
-                <input name="email" [(ngModel)]="email" required matInput>
+                <input
+                    [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+                    name="email"
+                    formControlName="email"
+                    required
+                    matInput
+                >
             </mat-form-field>
         </div>
 
         <div>
             <mat-form-field class="example-full-width">
                 <mat-label class="label">Passwort</mat-label>
-                <input name="password" [(ngModel)]="password" type="password" required matInput class="password" >
+                <input
+                    [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+                    name="password"
+                    type="password"
+                    formControlName="password"
+                    required
+                    matInput
+                    class="password"
+                >
 
             </mat-form-field>
         </div>
 
         <div>
-            <button mat-raised-button color="primary" (click)="login()" class="button">Login</button>
+            <button mat-raised-button color="primary" type="submit" class="button">Login</button>
         </div>
     </form>
     <div class="link">

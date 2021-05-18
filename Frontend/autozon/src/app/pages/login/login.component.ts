@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../core/services/login/login.service';
-import { NgModel } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -8,16 +8,25 @@ import { NgModel } from '@angular/forms';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  constructor(private loginService: LoginService) {}
-  email = '';
-  password = '';
+  submitted = false;
+  constructor(private loginService: LoginService, private fb: FormBuilder) {}
+
+  loginForm = this.fb.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', Validators.required]
+  });
 
   ngOnInit(): void {}
 
+  get f(): any { return this.loginForm.controls; }
+
   login(): void {
-    if (this.email === '' || this.password === '') {
+    this.submitted = true;
+    if (!this.loginForm.valid) {
       return;
     }
-    this.loginService.login(this.email, this.password);
+    this.loginService.login(
+      this.loginForm.controls.email.value,
+      this.loginForm.controls.password.value);
   }
 }
