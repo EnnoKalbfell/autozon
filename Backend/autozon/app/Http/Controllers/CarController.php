@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use App\Models\CarModel;
 
 class CarController extends Controller
 {
@@ -18,5 +19,14 @@ class CarController extends Controller
    */
   public function getAllCarBrands() {
     return DB::table('car')->groupBy('carBrand')->get();
+  }
+
+  public function getAllCarBrandsAndModels() {
+    $brands = DB::table('car')->get();
+    foreach($brands as $brand){
+      $model = CarModel::where('id', $brand->carModelId)->first();
+      $brand->carModel = $model;
+    }
+    return $brands;
   }
 }

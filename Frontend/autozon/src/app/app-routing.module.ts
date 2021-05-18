@@ -8,6 +8,7 @@ import { ProductSearchComponent } from './pages/product-search/product-search.co
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { MyProductOverviewComponent } from './pages/my-product-overview/my-product-overview.component';
 import { CartComponent } from './pages/cart/cart.component';
+import { CreateProductComponent } from './pages/create-product/create-product.component';
 
 
 const routes: Routes = [
@@ -34,6 +35,10 @@ const routes: Routes = [
       {
         path: 'cart',
         component: CartComponent
+      },
+      {
+        path: 'createNewProduct',
+        component: CreateProductComponent
       },
       {
         path: 'login',

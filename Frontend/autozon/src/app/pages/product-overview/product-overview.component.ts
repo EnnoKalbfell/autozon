@@ -27,7 +27,7 @@ export class ProductOverviewComponent implements OnInit {
           temp.forEach((element) => {
             if (
               element.car?.carBrand === brand &&
-              element.car?.carModel.carModel === model
+              element.car?.carModel?.carModel === model
             ) {
               this.products.push(element);
             }

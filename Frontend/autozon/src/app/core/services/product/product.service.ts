@@ -36,6 +36,38 @@ export class ProductService {
     return productSource$;
   }
 
+  createNewProduct(newProduct: IProduct): BehaviorSubject<string | undefined>{
+    const response$ = new BehaviorSubject<string | undefined>(undefined);
+
+    const token: string = sessionStorage.getItem('token') || '';
+    const requestOptions: IRequestOptions = {
+      headers: new HttpHeaders({['Authorization']: `Bearer ${token}`})
+    };
+
+    const requestData = {
+      name: newProduct.name,
+      dealer: newProduct.dealer?.id,
+      manufacturer: newProduct.manufacturer,
+      price: newProduct.price,
+      streetLegality: newProduct.streetLegality,
+      shortDescription: newProduct.shortDescription,
+      description: newProduct.description,
+      category: newProduct.category,
+      serialNumber: newProduct.serialNumber,
+      preview: 'prev1',
+      preview2: 'prev2',
+      preview3: 'prev3',
+      carId: newProduct.car,
+    };
+
+    this.apiService.post('product/create', requestData, requestOptions).subscribe(res => {
+      if (res) {
+        response$.next('successfull');
+      }
+    });
+    return response$;
+  }
+
   deleteMyProduct(id: number): any {
     const response$ = new BehaviorSubject<JSON | undefined>(undefined);
 

@@ -53,5 +53,6 @@ $router->group([
     $router->group(['prefix' => 'car'], function () use ($router) {
         $router->get('model', [CarModelController::class, 'getAllCarsFromBrand']);
         $router->get('', [CarController::class, 'getAllCarBrands']);
+        $router->get('brand/model', [CarController::class, 'getAllCarBrandsAndModels']);
     });
 });
