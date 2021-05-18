@@ -4,7 +4,7 @@
             <mat-card-subtitle>{{product.category}}, {{product.dealer?.companyName}}</mat-card-subtitle>
             <button id="detailsButton" mat-button color="primary" routerLink="/details" (click)="clickDetails()">Details</button>
     </mat-card-header>
-    <img mat-card-image src="product.preview">
+    <img mat-card-image src="../../../assets/prev1.png">
     <mat-card-content>
         <p> Preis: {{product.price}} </p>
         <p class="one-line-description"> {{product.shortDescription}} </p>
