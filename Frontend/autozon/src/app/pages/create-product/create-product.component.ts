@@ -33,11 +33,16 @@ export class CreateProductComponent implements OnInit {
     country: '',
     role: '',
     verified: false
-  }
+  };
   Cars: ICar[] = [];
 
   carId = undefined;
-  constructor(private productService: ProductService, private carService: CarService, private loginService: LoginService, private router: Router, private formBuilder: FormBuilder ) { 
+  constructor(
+    private productService: ProductService, 
+    private carService: CarService, 
+    private loginService: LoginService, 
+    private router: Router, 
+    private formBuilder: FormBuilder ) { 
   }
 
   ngOnInit(): void {
@@ -62,7 +67,7 @@ export class CreateProductComponent implements OnInit {
       descCtrl: ['', [Validators.required, Validators.maxLength(500)]],
       categoryCtrl: ['', [Validators.required]],
       serialCtrl: ['', [Validators.required]],
-    })
+    });
 
   }
 
@@ -81,9 +86,9 @@ export class CreateProductComponent implements OnInit {
     this.createProduct();
   }
 
-  createProduct(){
+  createProduct(): void{
 
-    let productData: IProduct = {
+    const productData: IProduct = {
       name: this.newProduct.get('nameCtrl')?.value,
       dealer: this.user,
       manufacturer: this.newProduct.get('manufacturerCtrl')?.value,
@@ -98,15 +103,15 @@ export class CreateProductComponent implements OnInit {
       preview3: 'prev3',
       car: this.carId,
       // TODO: Add Dealer's token
-    }
+    };
 
 
     this.productService.createNewProduct(productData).subscribe((result: any) => {
       console.log(result);
       try {
-        this.router.navigate(['/my-products'])
+        this.router.navigate(['/my-products']);
       } catch (error) {
-        
+        console.log(result);
       }
     });
   }
