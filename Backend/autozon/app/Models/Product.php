@@ -16,6 +16,7 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
+        'id',
         'name',
         'dealer',
         'manufacturer',
@@ -27,7 +28,8 @@ class Product extends Model
         'serialNumber',
         'preview',
         'preview2',
-        'preview3'
+        'preview3',
+        'hidden'
     ];
 
     public function car() {

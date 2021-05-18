@@ -17,10 +17,10 @@ export class ProductOverviewComponent implements OnInit {
     this.productService.fetchProductData().subscribe((res) => {
       if (res !== undefined) {
         this.products = res;
-        var searchParams = new URLSearchParams(window.location.search);
-        var brand = searchParams.get('brand');
-        var model = searchParams.get('model');
-        var temp = this.products;
+        const searchParams = new URLSearchParams(window.location.search);
+        const brand = searchParams.get('brand');
+        const model = searchParams.get('model');
+        const temp = this.products;
         if (brand !== null && model !== null) {
           this.products = [];
 

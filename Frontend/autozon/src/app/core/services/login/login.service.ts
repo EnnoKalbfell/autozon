@@ -3,13 +3,14 @@ import ApiService, { IRequestOptions } from '../api/api.service';
 import { HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { IUser } from '../../models/user.model';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private router: Router) { }
 
   /**
    * login
@@ -20,7 +21,30 @@ export class LoginService {
       password
     }).subscribe((res: any) => {
       sessionStorage.setItem('token', res.access_token);
+      this.router.navigate(['/']).then(() => {
+        window.location.reload();
+      });
     });
+  }
+
+  /**
+   * Logout
+   */
+  public logout(): BehaviorSubject<string | undefined> {
+    const logoutSource$ = new BehaviorSubject<string | undefined>(undefined);
+
+    const token: string = sessionStorage.getItem('token') || '';
+    const requestOptions: IRequestOptions = {
+      headers: new HttpHeaders({['Authorization']: `Bearer ${token}`})
+    };
+    this.apiService.post('auth/signout', {}, requestOptions).subscribe(res => {
+      if (res) {
+        sessionStorage.removeItem('token');
+        logoutSource$.next('logged out');
+      }
+    });
+
+    return logoutSource$;
   }
 
   /**
@@ -30,6 +54,11 @@ export class LoginService {
     const userSource$ = new BehaviorSubject<IUser | undefined>(undefined);
 
     const token: string = sessionStorage.getItem('token') || '';
+
+    if (token === '') {
+      return userSource$;
+    }
+
     const requestOptions: IRequestOptions = {
       headers: new HttpHeaders({['Authorization']: `Bearer ${token}`})
     };

@@ -40,8 +40,8 @@ export class ProductSearchComponent implements OnInit {
 
   submitFormData(): void {
     if (this.selectedModel !== '' || this.selectedBrand !== '') {
-      let url =
-        'http://localhost:4200?brand=' +
+      const url =
+        'http://localhost:4200/products?brand=' +
         this.selectedBrand +
         '&model=' +
         this.selectedModel;
