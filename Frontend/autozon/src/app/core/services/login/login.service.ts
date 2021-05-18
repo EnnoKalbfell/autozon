@@ -80,21 +80,27 @@ export class LoginService {
     phone: string,
     streetAndHouseNumber: string,
     zipCode: string,
-    city: string
-  ): void {
-      this.apiService.post('auth/signup/customer',
-      {
-        lastName: lastname,
-        firstName: firstname,
-        email,
-        password,
-        phone,
-        streetAndHouseNumber,
-        zipCode,
-        city
-      }).subscribe((res: any) => {
-        // sessionStorage.setItem('token', res.token)
-      });
+    city: string,
+    country: string
+  ): BehaviorSubject<string | undefined> {
+    const response$ = new BehaviorSubject<string | undefined>(undefined);
+    this.apiService.post('auth/signup/customer',
+    {
+      lastName: lastname,
+      firstName: firstname,
+      email,
+      password,
+      phone,
+      streetAndHouseNumber,
+      zipCode,
+      city,
+      country
+    }).subscribe((res: any) => {
+      if (res) {
+        response$.next('successfull');
+      }
+    });
+    return response$;
   }
 
   /**
@@ -109,21 +115,27 @@ export class LoginService {
     phone: string,
     streetAndHouseNumber: string,
     zipCode: string,
-    city: string
-  ): void {
-      this.apiService.post('http://localhost:3000/auth/signup/dealer',
-      {
-        companyName: companyname,
-        lastName: lastname,
-        firstName: firstname,
-        email,
-        password,
-        phone,
-        streetAndHouseNumber,
-        zipCode,
-        city
-      }).subscribe((res: any) => {
-        // sessionStorage.setItem('token', res.token)
-      });
+    city: string,
+    country: string
+  ): BehaviorSubject<string | undefined> {
+    const response$ = new BehaviorSubject<string | undefined>(undefined);
+    this.apiService.post('auth/signup/dealer',
+    {
+      companyName: companyname,
+      lastName: lastname,
+      firstName: firstname,
+      email,
+      password,
+      phone,
+      streetAndHouseNumber,
+      zipCode,
+      city,
+      country
+    }).subscribe((res: any) => {
+      if (res) {
+        response$.next('successfull');
+      }
+    });
+    return response$;
   }
 }
