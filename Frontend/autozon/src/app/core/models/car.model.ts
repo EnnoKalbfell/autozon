@@ -2,7 +2,7 @@ import { ICarModel } from './carmodel.model';
 
 export interface ICar{
     id: number;
-    carBrand: string;
+    carBrand?: string;
     carModelId: number;
-    carModel: ICarModel;
+    carModel?: ICarModel;
 }

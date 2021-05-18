@@ -23,7 +23,7 @@ class CarController extends Controller
 
   public function getAllCarBrandsAndModels() {
     $brands = DB::table('car')->get();
-    foreach($brand as $brands){
+    foreach($brands as $brand){
       $model = CarModel::where('id', $brand->carModelId)->first();
       $brand->carModel = $model;
     }

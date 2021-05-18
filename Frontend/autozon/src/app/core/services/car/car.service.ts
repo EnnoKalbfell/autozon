@@ -6,15 +6,15 @@ import ApiService from '../api/api.service';
 @Injectable({
   providedIn: 'root'
 })
-export class CarServiceService {
+export class CarService {
 
   constructor(private apiService: ApiService) { }
 
   fetchCars(): BehaviorSubject<ICar[]> {
     const carSource$ = new BehaviorSubject<ICar[]>([]);
-    this.apiService.get('car/brand/model')
-
-
+    this.apiService.get('car/brand/model').subscribe(res => {
+      carSource$.next(res as ICar[]);
+    });
     return carSource$;
   }
 }
