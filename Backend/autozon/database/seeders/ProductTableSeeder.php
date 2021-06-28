@@ -26,9 +26,9 @@ class ProductTableSeeder extends Seeder
             'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
             'category' => 'Spoiler',
             'serialNumber' => '155443345534',
-            'preview' => 'prev1',
-            'preview2' => 'prev2',
-            'preview3' => 'prev3',
+            'preview' => 'spoiler.jpg',
+            'preview2' => 'prev1.png',
+            'preview3' => 'prev1.png',
             'hidden' => false
         ]);
 
@@ -43,9 +43,9 @@ class ProductTableSeeder extends Seeder
             'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
             'category' => 'Filter',
             'serialNumber' => '155443345534',
-            'preview' => 'prev1',
-            'preview2' => 'prev2',
-            'preview3' => 'prev3',
+            'preview' => 'oil-filter.png',
+            'preview2' => 'prev1.png',
+            'preview3' => 'prev1.png',
             'hidden' => false
         ]);
 
@@ -61,9 +61,9 @@ class ProductTableSeeder extends Seeder
             'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
             'category' => 'Exhaust',
             'serialNumber' => '155443345534',
-            'preview' => 'prev1',
-            'preview2' => 'prev2',
-            'preview3' => 'prev3',
+            'preview' => 'downpipe.jpg',
+            'preview2' => 'prev1.png',
+            'preview3' => 'prev1.png',
             'hidden' => false
         ]);
 
@@ -78,9 +78,9 @@ class ProductTableSeeder extends Seeder
             'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
             'category' => 'Reifen',
             'serialNumber' => '155443345534',
-            'preview' => 'prev1',
-            'preview2' => 'prev2',
-            'preview3' => 'prev3',
+            'preview' => 'reifen.jpg',
+            'preview2' => 'prev1.png',
+            'preview3' => 'prev1.png',
             'hidden' => false
         ]);
     }

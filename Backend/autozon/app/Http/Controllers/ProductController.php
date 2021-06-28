@@ -95,7 +95,7 @@ class ProductController extends Controller
         'description' => $request->input('description'),
         'category' => $request->input('category'),
         'serialNumber' => $request->input('serialNumber'),
-        'preview' => $request->input('preview'),
+        'preview' => 'bremsscheibe.jpg',
         'preview2' => $request->input('preview2'),
         'preview3' => $request->input('preview3'),
         'hidden' => false

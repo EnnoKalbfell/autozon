@@ -32,10 +32,10 @@ class UserTableSeeder extends Seeder
         ]);
         
         DB::table('user')->insert([
-            'lastName' => 'Verified Dealer',
+            'lastName' => 'RIDEX',
             'firstName' => 'Test',
-            'companyName' => 'SBB',
-            'email' => 'verifieddealer@test.ch',
+            'companyName' => 'RIDEX',
+            'email' => 'ridex@test.ch', // verifieddealer@test.ch
             'password' => Hash::make('sml12345'),
             'phone' => '0798765432',
             'streetAndHouseNumber' => 'Teststrasse 2',
@@ -47,10 +47,10 @@ class UserTableSeeder extends Seeder
         ]);
 
         DB::table('user')->insert([
-            'lastName' => 'Unverified Dealer',
+            'lastName' => 'BOSCH',
             'firstName' => 'Test',
-            'companyName' => 'Swiss AG',
-            'email' => 'unverifieddealer@test.ch',
+            'companyName' => 'BOSCH',
+            'email' => 'bosch@test.ch', // unverifieddealer@test.ch
             'password' => Hash::make('sml12345'),
             'phone' => '0762229900',
             'streetAndHouseNumber' => 'Teststrasse 3',
